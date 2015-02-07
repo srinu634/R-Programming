@@ -23,8 +23,10 @@ learning.test$carb = as.factor(learning.test$carb)
 
 tan = tree.bayes(learning.test,"mpg") #specify the root node
 fitted = bn.fit(tan, learning.test, method = "bayes") #learn the parameters
-pred = predict(fitted, learning.test)
-table(pred, learning.test[, "mpg"])
+fitted
+pred = predict(fitted, learning.test) #?
+pred #?
+table(pred, learning.test[, "mpg"]) #?
 
 graphviz.plot(tan)
 
