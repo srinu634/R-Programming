@@ -12,6 +12,13 @@ str(pc5.data)
 
 pc5.data.frame = data.frame(pc5.data)
 
+for( i in varnames){
+  j = paste("pc5.data$",i,sep="") ;
+  print(j)
+  j = as.factor(j)
+}
+
+
 tan = tree.bayes(pc5.data,"c") #specify the root node
 
 
