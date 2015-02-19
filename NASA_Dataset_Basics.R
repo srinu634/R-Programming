@@ -70,7 +70,7 @@ tan = tree.bayes(pc5.data,"c") #specify the root node
 
 fitted = bn.fit(tan, pc5.data, method = "bayes") #learn the parameters
 fitted
-pred = predict(fitted, learning.test) #?
+pred = predict(fitted, pc5.data) #?
 pred #?
 table(pred, pc5.data[, "c"]) #?
 
