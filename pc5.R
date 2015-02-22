@@ -4,13 +4,14 @@ library(bnlearn)
 library(discretization)
 library(ROCR)
 library(pROC)
+library(forecast)
 
 
 pc5 = read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc5.arff") #Load the dataset
 
 excludevars <-  names(pc5) %in% c("PARAMETER_COUNT")
 pc5 <- pc5[ !excludevars  ]
-
+#str(pc5)
 pc5.test = pc5[600:705,] # Build a Test set
 
 
