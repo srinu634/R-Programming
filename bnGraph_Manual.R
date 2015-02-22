@@ -50,7 +50,13 @@ test.set[,col_names] <- lapply(test.set[,col_names] , factor)
 #Constructing the graph manually
 plot(g)
 
-graphviz.plot(g)
+graphviz.plot(gtemp)
+
+gtemp = g
+modelstring(gtemp) = " [NAME|AGE][SCORE|NAME][RACE|SCORE:NAME:AGE][AGE]"
+
+
+score(g, frame, type = "k2")
 
 fit  = bn.fit (g,frame)
 
@@ -60,9 +66,13 @@ pred = predict(fit$NAME, test.set)
 
 cbind(pred, test.set[, "NAME"])
 
+temppred = pred
+temp.testset = test.set
 
+temppred <- as.numeric(as.character( temppred ))
+temp.testset[,"NAME"] <- as.numeric(as.character( temp.testset[,"NAME"] ))
 
-#accuracy(f = pred, x = test.set[, "NAME"])
+accuracy(f = temppred, x = temp.testset[, "NAME"])
 
 #table(pred, bayesiansampledata[,"NAME"])
 
