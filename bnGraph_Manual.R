@@ -10,7 +10,7 @@ attributes  = c("NAME","AGE","SCORE","RACE") ;
 
 g = empty.graph(attributes)
 
-modelstring(g) = " [NAME][SCORE][RACE|SCORE:NAME][AGE]"
+modelstring(g) = " [NAME|AGE][SCORE|AGE][RACE|AGE][AGE]"
 
 training.data = bayesiansampledata[1:2,]
 test.set = bayesiansampledata[3:4,]
