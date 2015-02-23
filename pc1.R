@@ -81,36 +81,6 @@ attributes <- names(pc1)
 for(i in 1:(len-1) ){
   to <- c(to, attributes[i]  )
 }
-#to
-# 
-# names(pc1.disc.data) = names(pc1)
-# pc1.gs = empty.graph(attributes)
-# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-# #str(whitelist.arcs)
-# #names(whitelist.arcs)
-# pc1.gs = cextend (  gs(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-
-# see set.arc to set the arc directions
-#class(pc1.gs)
-#modelstring(pc1.gs)
-# arcs(pc1.gs)
-#pc1.gs$arcs ## To see the info about arcs
-#pc1.gs$nodes
-
-# 
-# pc1.gs.fitted = bn.fit(pc1.gs,pc1.disc.data)
-# 
-# pc1.gs.pred<- predict(pc1.gs.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-# 
-# table(pc1.gs.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-# #Change the outputs to numeric values; 
-# pc1.given.gs <- as.numeric(as.character(pc1.gs.pred))
-# pc1.pred.gs <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-# accuracy(f = pc1.given.gs , x = pc1.pred.gs)  #print the accuracy
-# 
-# 
-# #graphviz.plot(pc1.gs)
-# 
 
 
 
@@ -203,8 +173,77 @@ accuracy(f = pc1.given.tabu , x = pc1.pred.tabu)  #print the accuracy
 #graphviz.plot(pc1.tabu)
 
 
+pc1.si.hiton.pc = empty.graph(attributes)
+whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+#str(whitelist.arcs)
+#names(whitelist.arcs)
+pc1.si.hiton.pc = cextend (  si.hiton.pc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+
+pc1.si.hiton.pc.fitted = bn.fit(pc1.si.hiton.pc,pc1.disc.data)
+
+pc1.si.hiton.pc.pred<- predict(pc1.si.hiton.pc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+
+table(pc1.si.hiton.pc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+#Change the outputs to numeric values; 
+pc1.given.si.hiton.pc <- as.numeric(as.character(pc1.si.hiton.pc.pred))
+pc1.pred.si.hiton.pc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+accuracy(f = pc1.given.si.hiton.pc , x = pc1.pred.si.hiton.pc)  #print the accuracy
+
+#graphviz.plot(pc1.si.hiton.pc$arcs)
+
+pc1.rsmax2 = empty.graph(attributes)
+whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+#str(whitelist.arcs)
+#names(whitelist.arcs)
+pc1.rsmax2 = cextend (  rsmax2(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+
+pc1.rsmax2.fitted = bn.fit(pc1.rsmax2,pc1.disc.data)
+
+pc1.rsmax2.pred<- predict(pc1.rsmax2.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+
+table(pc1.rsmax2.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+#Change the outputs to numeric values; 
+pc1.given.rsmax2 <- as.numeric(as.character(pc1.rsmax2.pred))
+pc1.pred.rsmax2 <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+accuracy(f = pc1.given.rsmax2 , x = pc1.pred.rsmax2)  #print the accuracy
+
+#graphviz.plot(pc1.rsmax2)
 
 
+
+
+
+
+#to
+# 
+# names(pc1.disc.data) = names(pc1)
+# pc1.gs = empty.graph(attributes)
+# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+# #str(whitelist.arcs)
+# #names(whitelist.arcs)
+# pc1.gs = cextend (  gs(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+
+# see set.arc to set the arc directions
+#class(pc1.gs)
+#modelstring(pc1.gs)
+# arcs(pc1.gs)
+#pc1.gs$arcs ## To see the info about arcs
+#pc1.gs$nodes
+
+# 
+# pc1.gs.fitted = bn.fit(pc1.gs,pc1.disc.data)
+# 
+# pc1.gs.pred<- predict(pc1.gs.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+# 
+# table(pc1.gs.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+# #Change the outputs to numeric values; 
+# pc1.given.gs <- as.numeric(as.character(pc1.gs.pred))
+# pc1.pred.gs <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+# accuracy(f = pc1.given.gs , x = pc1.pred.gs)  #print the accuracy
+# 
+# 
+# #graphviz.plot(pc1.gs)
+# 
 
 
 
