@@ -86,10 +86,21 @@ graph.gs = empty.graph(attributes)
 whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
 #str(whitelist.arcs)
 #names(whitelist.arcs)
-graph.gs = gs(pc1.disc.data,whitelist = whitelist.arcs,debug=TRUE)
+pc1.graph.gs = cextend (  gs(pc1.disc.data,whitelist = whitelist.arcs,debug=TRUE) ) # cextend :: makes sure that all edges are directed
 
-graphviz.plot(graph.gs)
-  
+# see set.arc to set the arc directions
+
+#class(pc1.graph.gs)
+#modelstring(pc1.graph.gs)
+# arcs(pc1.graph.gs)
+#pc1.graph.gs$arcs ## To see the info about arcs
+
+
+#pc1.graph.gs$nodes
+pc1.gs.fit = bn.fit(pc1.graph.gs,pc1.disc.data)
+graphviz.plot(pc1.graph.gs)
+
+
 #traceback()
 #iamb
 #fast.iamb
