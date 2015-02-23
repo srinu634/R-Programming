@@ -28,6 +28,7 @@ pc1.disc.data = data.frame(pc1.disc$Disc.data)
 pc1.test.data = data.frame(pc1.test.disc$Disc.data)
 
 
+
 #Change all the discretized values into factors
 pc1.disc.data[,names(pc1)] <- lapply(pc1.disc.data[,names(pc1)] , factor) 
 pc1.test.data[,names(pc1.test)] <- lapply(pc1.test.data[,names(pc1.test)] , factor) 
@@ -45,7 +46,7 @@ pc1.predicted.bn <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
 accuracy(f = pc1.given.bn , x = pc1.predicted.bn)  #print the accuracy
 
 
-#Building a Tree Augmented Network classifier
+################ Tree Augmented Network classifier###########################
 pc1.tan = tree.bayes(pc1.disc.data, "Defective")
 #graphviz.plot(pc1.tan)
 pc1.fitted = bn.fit(pc1.tan, pc1.disc.data)
@@ -62,4 +63,35 @@ accuracy(f = pc1.given.tan , x = pc1.pred.tan)  #print the accuracy
 #score(pc1.tan, pc1.disc.data, type = "bde")
 #score(pc1.bn,pc1.disc.data,type="bde")
 
+###############Constraint Based Networks########################
+
+#gs
+str(pc1.disc.data)
+# Include an arc from class node to every other node, build a grow-shrink algorithm on remaining nodes.
+len <- length(pc1.disc.data) #Number of attributes
+from <- NULL
+for( i in 1:(len-1)){
+  from <- c( from,c("Defective")) 
+}
+from
+to <- NULL
+attributes <- names(pc1)
+for(i in 1:(len-1) ){
+  to <- c(to, attributes[i]  )
+}
+#to
+
+names(pc1.disc.data) = names(pc1)
+graph.gs = empty.graph(attributes)
+whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+#str(whitelist.arcs)
+#names(whitelist.arcs)
+graph.gs = gs(pc1.disc.data,whitelist = whitelist.arcs,debug=TRUE)
+
+graphviz.plot(graph.gs)
+  
+#traceback()
+#iamb
+#fast.iamb
+#inter.iamb
 
