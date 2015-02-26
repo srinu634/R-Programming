@@ -12,9 +12,10 @@ library(forecast)
 source("preprocess.R")
 source("bn.r")
 source("TAN.R")
+source("hc.R")
+source("mmhc.R")
 
 debug = TRUE
-
 
 preprocess(debug)
 
@@ -23,13 +24,17 @@ runBN(debug)
 runTAN(debug)
 
 
+runHC(debug)
+
+runMMHC(debug)
+
 
 
 ###############Constraint Based Networks########################
 
 #gs
 #str(pc1.disc.data)
-# Include an arc from class node to every other node, build a grow-shrink algorithm on remaining nodes.
+# Include an arc from class node to every other node
 len <- length(pc1.disc.data) #Number of attributes
 from <- NULL
 for( i in 1:(len-1)){
@@ -44,42 +49,9 @@ for(i in 1:(len-1) ){
 
 
 
-pc1.hc = empty.graph(attributes)
-whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-#str(whitelist.arcs)
-#names(whitelist.arcs)
-pc1.hc = cextend (  hc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-
-pc1.hc.fitted = bn.fit(pc1.hc,pc1.disc.data,method = "mle")
-
-pc1.hc.pred<- predict(pc1.hc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-
-table(pc1.hc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-#Change the outputs to numeric values; 
-pc1.given.hc <- as.numeric(as.character(pc1.hc.pred))
-pc1.pred.hc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-accuracy(f = pc1.given.hc , x = pc1.pred.hc)  #print the accuracy
-
-#graphviz.plot(pc1.hc)
 
 
-pc1.mmhc = empty.graph(attributes)
-whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-#str(whitelist.arcs)
-#names(whitelist.arcs)
-pc1.mmhc = cextend (  mmhc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
 
-pc1.mmhc.fitted = bn.fit(pc1.mmhc,pc1.disc.data)
-
-pc1.mmhc.pred<- predict(pc1.mmhc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-
-table(pc1.mmhc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-#Change the outputs to numeric values; 
-pc1.given.mmhc <- as.numeric(as.character(pc1.mmhc.pred))
-pc1.pred.mmhc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-accuracy(f = pc1.given.mmhc , x = pc1.pred.mmhc)  #print the accuracy
-
-#graphviz.plot(pc1.mmhc)
 
 
 
