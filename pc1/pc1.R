@@ -14,6 +14,8 @@ source("bn.r")
 source("TAN.R")
 source("hc.R")
 source("mmhc.R")
+source("tabu.R")
+source("HITON.R")
 
 debug = TRUE
 
@@ -27,6 +29,11 @@ runTAN(debug)
 runHC(debug)
 
 runMMHC(debug)
+
+runTABU(debug)
+
+runHITON(debug)
+
 
 
 
@@ -51,45 +58,6 @@ for(i in 1:(len-1) ){
 
 
 
-
-
-
-
-
-pc1.tabu = empty.graph(attributes)
-whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-#str(whitelist.arcs)
-#names(whitelist.arcs)
-pc1.tabu = cextend (  tabu(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-
-pc1.tabu.fitted = bn.fit(pc1.tabu,pc1.disc.data)
-
-pc1.tabu.pred<- predict(pc1.tabu.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-
-table(pc1.tabu.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-#Change the outputs to numeric values; 
-pc1.given.tabu <- as.numeric(as.character(pc1.tabu.pred))
-pc1.pred.tabu <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-accuracy(f = pc1.given.tabu , x = pc1.pred.tabu)  #print the accuracy
-
-#graphviz.plot(pc1.tabu)
-
-
-pc1.si.hiton.pc = empty.graph(attributes)
-whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-#str(whitelist.arcs)
-#names(whitelist.arcs)
-pc1.si.hiton.pc = cextend (  si.hiton.pc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-
-pc1.si.hiton.pc.fitted = bn.fit(pc1.si.hiton.pc,pc1.disc.data)
-
-pc1.si.hiton.pc.pred<- predict(pc1.si.hiton.pc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-
-table(pc1.si.hiton.pc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-#Change the outputs to numeric values; 
-pc1.given.si.hiton.pc <- as.numeric(as.character(pc1.si.hiton.pc.pred))
-pc1.pred.si.hiton.pc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-accuracy(f = pc1.given.si.hiton.pc , x = pc1.pred.si.hiton.pc)  #print the accuracy
 
 #graphviz.plot(pc1.si.hiton.pc$arcs)
 
@@ -245,20 +213,20 @@ accuracy(f = pc1.given.rsmax2 , x = pc1.pred.rsmax2)  #print the accuracy
 
 
 
-# pc1.mmpc = empty.graph(attributes)
-# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-# #str(whitelist.arcs)
-# #names(whitelist.arcs)
-# pc1.mmpc = cextend (  mmpc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-# 
-# pc1.mmpc.fitted = bn.fit(pc1.mmpc,pc1.disc.data,method = "mle")
-# 
-# pc1.mmpc.pred<- predict(pc1.mmpc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-# 
-# table(pc1.mmpc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-# #Change the outputs to numeric values; 
-# pc1.given.mmpc <- as.numeric(as.character(pc1.mmpc.pred))
-# pc1.pred.mmpc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-# accuracy(f = pc1.given.mmpc , x = pc1.pred.mmpc)  #print the accuracy
-# 
-# #graphviz.plot(pc1.mmpc)
+pc1.mmpc = empty.graph(attributes)
+whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+#str(whitelist.arcs)
+#names(whitelist.arcs)
+pc1.mmpc = cextend (  mmpc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+
+pc1.mmpc.fitted = bn.fit(pc1.mmpc,pc1.disc.data,method = "mle")
+
+pc1.mmpc.pred<- predict(pc1.mmpc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+
+table(pc1.mmpc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+#Change the outputs to numeric values; 
+pc1.given.mmpc <- as.numeric(as.character(pc1.mmpc.pred))
+pc1.pred.mmpc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+accuracy(f = pc1.given.mmpc , x = pc1.pred.mmpc)  #print the accuracy
+
+#graphviz.plot(pc1.mmpc)

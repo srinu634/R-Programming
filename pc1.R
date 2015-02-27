@@ -9,8 +9,8 @@ library(forecast)
 pc1 = read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
 
 
-pc1.test = pc1[600:705,] # Build a Test set
-#pc1 = pc1[1:599,]
+pc1.test = pc1[(9*NROW(pc1)/10):NROW(pc1),] # Build a Test set
+pc1 = pc1[1:(9*NROW(pc1)/10-1),]
 
 # str(pc1) 
 
@@ -33,17 +33,47 @@ pc1.test.data = data.frame(pc1.test.disc$Disc.data)
 #Change all the discretized values into factors
 pc1.disc.data[,names(pc1)] <- lapply(pc1.disc.data[,names(pc1)] , factor) 
 pc1.test.data[,names(pc1.test)] <- lapply(pc1.test.data[,names(pc1.test)] , factor) 
-#str(pc1.test.set.data)
+# length ( levels ( pc1.test.data$DESIGN_DENSITY ) )
+
+
+
+#Bayesian Networks can't cope up with single factored variables , so we have to remove all the single factored variables
+excludevars <- NULL
+
+for ( i in 1:length(names(pc1.disc.data) ) ) {
+  print(length( levels( pc1.disc.data[,i]) ) )
+  print(length( levels( pc1.test.data[,i]) ) )
+               
+  if ( length( levels( pc1.disc.data[,i]) ) == 1 ) {
+    excludevars <- c(excludevars,names(pc1.disc.data)[i])
+  } 
+  if ( length( levels( pc1.test.data[,i] ) ) == 1) {
+    excludevars <- c(excludevars,names(pc1.test.data)[i])
+  } 
+} #for
+
+
+excludevars <- unique(excludevars)
+
+#excludevars
+
+excludevars <-  names(pc1) %in% excludevars
+pc1.disc.data <- pc1.disc.data[ !excludevars  ]
+pc1.test.data <- pc1.test.data[ !excludevars  ]
+
+
+
+
 
 
 #Building a Naive Bayes classifier
 pc1.bn = naive.bayes(pc1.disc.data, "Defective")
-pc1.pred.bn = predict(pc1.bn, pc1.disc.data)  #2nd parameter should be pc1.test.data
-table(pc1.pred.bn,pc1.disc.data[,"Defective"])   #output the prediction matrix
+pc1.pred.bn = predict(pc1.bn, pc1.test.data)  #2nd parameter should be pc1.test.data
+table(pc1.pred.bn,pc1.test.data[,"Defective"])   #output the prediction matrix
 
 #Change the outputs to numeric values; Happens at two levels. 1) Change the params to characters 2) Change the characters to numeric.
 pc1.given.bn <- as.numeric(as.character(pc1.pred.bn))
-pc1.predicted.bn <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+pc1.predicted.bn <- as.numeric(as.character(pc1.test.data[,"Defective"]))
 accuracy(f = pc1.given.bn , x = pc1.predicted.bn)  #print the accuracy
 
 
@@ -52,13 +82,13 @@ pc1.tan = tree.bayes(pc1.disc.data, "Defective")
 #graphviz.plot(pc1.tan)
 pc1.fitted = bn.fit(pc1.tan, pc1.disc.data)
 #coefficients(pc1.fitted)
-pc1.pred.tan <- predict(pc1.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+pc1.pred.tan <- predict(pc1.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
 #pc1.pred.tan <- as.numeric(pc1.pred.tan)
 #pc1.perf.tan <- performance(pc1.pred.tan,  measure = "tpr",x.measure =   "fpr")
-table(pc1.pred.tan, pc1.disc.data[, "Defective"]) #output the prediction matrix
+table(pc1.pred.tan, pc1.test.data[, "Defective"]) #output the prediction matrix
 #Change the outputs to numeric values; 
 pc1.given.tan <- as.numeric(as.character(pc1.pred.tan))
-pc1.pred.tan <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+pc1.pred.tan <- as.numeric(as.character(pc1.test.data[,"Defective"]))
 accuracy(f = pc1.given.tan , x = pc1.pred.tan)  #print the accuracy
 
 #score(pc1.tan, pc1.disc.data, type = "bde")
@@ -90,47 +120,17 @@ whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
 #names(whitelist.arcs)
 pc1.hc = cextend (  hc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
 
-pc1.hc.fitted = bn.fit(pc1.hc,pc1.disc.data,method = "mle")
+pc1.hc.fitted = bn.fit(pc1.hc,pc1.disc.data)
 
-pc1.hc.pred<- predict(pc1.hc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+pc1.hc.pred<- predict(pc1.hc.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
 
-table(pc1.hc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+table(pc1.hc.pred, pc1.test.data[, "Defective"]) #output the prediction matrix
 #Change the outputs to numeric values; 
 pc1.given.hc <- as.numeric(as.character(pc1.hc.pred))
-pc1.pred.hc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+pc1.pred.hc <- as.numeric(as.character(pc1.test.data[,"Defective"]))
 accuracy(f = pc1.given.hc , x = pc1.pred.hc)  #print the accuracy
 
 #graphviz.plot(pc1.hc)
-
-
-
-
-
-
-
-
-
-pc1.mmpc = empty.graph(attributes)
-whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-#str(whitelist.arcs)
-#names(whitelist.arcs)
-pc1.mmpc = cextend (  mmpc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-
-pc1.mmpc.fitted = bn.fit(pc1.mmpc,pc1.disc.data,method = "mle")
-
-pc1.mmpc.pred<- predict(pc1.mmpc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-
-table(pc1.mmpc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-#Change the outputs to numeric values; 
-pc1.given.mmpc <- as.numeric(as.character(pc1.mmpc.pred))
-pc1.pred.mmpc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-accuracy(f = pc1.given.mmpc , x = pc1.pred.mmpc)  #print the accuracy
-
-#graphviz.plot(pc1.mmpc)
-
-
-
-
 
 
 pc1.mmhc = empty.graph(attributes)
@@ -141,12 +141,12 @@ pc1.mmhc = cextend (  mmhc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cexte
 
 pc1.mmhc.fitted = bn.fit(pc1.mmhc,pc1.disc.data)
 
-pc1.mmhc.pred<- predict(pc1.mmhc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+pc1.mmhc.pred<- predict(pc1.mmhc.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
 
-table(pc1.mmhc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+table(pc1.mmhc.pred, pc1.test.data[, "Defective"]) #output the prediction matrix
 #Change the outputs to numeric values; 
 pc1.given.mmhc <- as.numeric(as.character(pc1.mmhc.pred))
-pc1.pred.mmhc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+pc1.pred.mmhc <- as.numeric(as.character(pc1.test.data[,"Defective"]))
 accuracy(f = pc1.given.mmhc , x = pc1.pred.mmhc)  #print the accuracy
 
 #graphviz.plot(pc1.mmhc)
@@ -340,3 +340,23 @@ accuracy(f = pc1.given.rsmax2 , x = pc1.pred.rsmax2)  #print the accuracy
 
 
 
+
+
+
+# pc1.mmpc = empty.graph(attributes)
+# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
+# #str(whitelist.arcs)
+# #names(whitelist.arcs)
+# pc1.mmpc = cextend (  mmpc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+# 
+# pc1.mmpc.fitted = bn.fit(pc1.mmpc,pc1.disc.data,method = "mle")
+# 
+# pc1.mmpc.pred<- predict(pc1.mmpc.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
+# 
+# table(pc1.mmpc.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
+# #Change the outputs to numeric values; 
+# pc1.given.mmpc <- as.numeric(as.character(pc1.mmpc.pred))
+# pc1.pred.mmpc <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
+# accuracy(f = pc1.given.mmpc , x = pc1.pred.mmpc)  #print the accuracy
+# 
+# #graphviz.plot(pc1.mmpc)

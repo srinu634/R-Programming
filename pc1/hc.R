@@ -1,5 +1,5 @@
 runHC = function(debug) {
-  score1 <- c("bde","k2","aic")
+  score1 <- c("aic","k2","bde")
   attributes <- names(pc1.disc.data)
   for( i in score1) {
     
