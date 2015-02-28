@@ -20,17 +20,20 @@ runMMHC = function(debug) {
   
   pc1.mmhc.fitted = bn.fit(pc1.mmhc,pc1.disc.data)
   
-  pc1.mmhc.pred<- predict(pc1.mmhc.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
+  pc1.mmhc.pred<- predict(pc1.mmhc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
   
-  print( table(pc1.mmhc.pred, pc1.test.data[, "Defective"])) #output the prediction matrix
+  print( table(pc1.mmhc.pred, pc1.test.data[, "L"])) #output the prediction matrix
   #Change the outputs to numeric values; 
   pc1.given.mmhc <- as.numeric(as.character(pc1.mmhc.pred))
-  pc1.pred.mmhc <- as.numeric(as.character(pc1.test.data[,"Defective"]))
+  pc1.pred.mmhc <- as.numeric(as.character(pc1.test.data[,"L"]))
   print( accuracy(f = pc1.given.mmhc , x = pc1.pred.mmhc) )  #print the accuracy
   
   if(debug) {
     print("Done with MMHC")
   }
+  png('./plots/mmhc.png',units="in", width=11, height=8.5, res=300)
+  graphviz.plot(pc1.mmhc)
+  dev.off()
   
   #graphviz.plot(pc1.mmhc)
   

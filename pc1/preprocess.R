@@ -1,7 +1,11 @@
 preprocess  = function(debug) {
-  
+  setwd("C:\Users\redhawk\Documents\GitHub\R-Programming\pc1\plots")
   pc1 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
   
+  Letters <<- c(letters,LETTERS)
+  colnames(pc1) <<- Letters[1:38]
+
+  print( str(pc1))
   
   pc1.test <<- pc1[(9*NROW(pc1)/10):NROW(pc1),] # Build a Test set
   pc1 <<- pc1[1:(9*NROW(pc1)/10-1),]
@@ -14,8 +18,8 @@ preprocess  = function(debug) {
     print("Converting N,Y to 0,1")
   }
   
-  pc1$Defective  <<- as.numeric(factor(pc1$Defective , levels=c("N" ,"Y") ) ) 
-  pc1.test$Defective  <<- as.numeric(pc1.test$Defective , levels=c("N" ,"Y") ) 
+  pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
+  pc1.test$L  <<- as.numeric(pc1.test$L , levels=c("N" ,"Y") ) 
   
   
   if( debug){
@@ -30,6 +34,7 @@ preprocess  = function(debug) {
   #load the data into a data frame
   pc1.disc.data  <<- data.frame(pc1.disc$Disc.data)
   pc1.test.data  <<- data.frame(pc1.test.disc$Disc.data)
+ 
   
   if( debug){
     print("Factorising Discretised data")
@@ -67,8 +72,7 @@ preprocess  = function(debug) {
   if( debug){
     print("Single factored variables are:")
     print(excludevars)
-  }
-  
+  } 
   
   excludevars  <<-  names(pc1) %in% excludevars
   pc1.disc.data  <<- pc1.disc.data[ !excludevars  ]

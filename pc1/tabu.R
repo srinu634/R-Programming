@@ -30,14 +30,18 @@ runTABU = function(debug) {
       print(str(pc1.tabu.fitted))
     }
     
-    pc1.tabu.pred <<- predict(pc1.tabu.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
+    pc1.tabu.pred <<- predict(pc1.tabu.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
     
     
-    table(pc1.tabu.pred, pc1.test.data[, "Defective"]) #output the prediction matrix
+    table(pc1.tabu.pred, pc1.test.data[, "L"]) #output the prediction matrix
     #Change the outputs to numeric values; 
     pc1.given.tabu <<- as.numeric(as.character(pc1.tabu.pred))
-    pc1.pred.tabu <<- as.numeric(as.character(pc1.test.data[,"Defective"]))
+    pc1.pred.tabu <<- as.numeric(as.character(pc1.test.data[,"L"]))
     accuracy(f = pc1.given.tabu , x = pc1.pred.tabu)  #print the accuracy
+    
+    png('./plots/tabu.png',units="in", width=11, height=8.5, res=300)
+    graphviz.plot(pc1.tabu)
+    dev.off()
     
     #graphviz.plot(pc1.tabu)
   }

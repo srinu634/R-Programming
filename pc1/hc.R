@@ -17,12 +17,12 @@ runHC = function(debug) {
     
     pc1.hc.fitted = bn.fit(pc1.hc,pc1.disc.data)
     
-    pc1.hc.pred<- predict(pc1.hc.fitted$Defective, pc1.test.data) #2nd parameter should be pc1.test.data
+    pc1.hc.pred<- predict(pc1.hc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
     
-    table(pc1.hc.pred, pc1.test.data[, "Defective"]) #output the prediction matrix
+    table(pc1.hc.pred, pc1.test.data[, "L"]) #output the prediction matrix
     #Change the outputs to numeric values; 
     pc1.given.hc <- as.numeric(as.character(pc1.hc.pred))
-    pc1.pred.hc <- as.numeric(as.character(pc1.test.data[,"Defective"]))
+    pc1.pred.hc <- as.numeric(as.character(pc1.test.data[,"L"]))
     accuracy(f = pc1.given.hc , x = pc1.pred.hc)  #print the accuracy
     
     #graphviz.plot(pc1.hc)
@@ -33,5 +33,8 @@ runHC = function(debug) {
   if(debug){
     print("Done with Score Based - Hill climbing Algorithm")
   }
-
+  
+  png('./plots/hill_climb.png',units="in", width=11, height=8.5, res=300)
+  graphviz.plot(pc1.hc)
+  dev.off()
 }
