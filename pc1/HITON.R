@@ -1,9 +1,9 @@
 runHITON = function(debug) {
-  pc1.si.hiton.pc = empty.graph(attributes)
+  pc1.si.hiton.pc = empty.graph(names(pc1.disc.data))
  
   #str(whitelist.arcs)
   #names(whitelist.arcs)
-  pc1.si.hiton.pc = cextend (  si.hiton.pc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+  pc1.si.hiton.pc = cextend (  si.hiton.pc(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
   
   pc1.si.hiton.pc.fitted = bn.fit(pc1.si.hiton.pc,pc1.disc.data)
   

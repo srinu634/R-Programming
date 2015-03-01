@@ -1,9 +1,9 @@
 runGS = function(debug) {
-  pc1.gs = empty.graph(attributes)
+  pc1.gs = empty.graph(names(pc1.disc.data))
   #whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
   #str(whitelist.arcs)
   #names(whitelist.arcs)
-  pc1.gs = cextend (  gs(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+  pc1.gs = cextend (  gs(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
   
  # see set.arc to set the arc directions
  #class(pc1.gs)

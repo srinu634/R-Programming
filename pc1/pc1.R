@@ -6,56 +6,107 @@ library(ROCR)
 library(pROC)
 library(forecast)
 
-
+setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
 
 
 source("preprocess.R")
 source("bn.r")
 source("TAN.R")
-#source("hc.R")
+source("hc.R")
 source("mmhc.R")
-#source("tabu.R")
+source("tabu.R")
 source("HITON.R")
 source("RSMAX2.R")
 source("mmpc.R")
 source("gs.R")
+source("IAMB.R")
+source("mmpc.R")
+source("fastIAMB.R")
+source("interIAMB.R")
+
+
 
 debug = FALSE
 
 preprocess(debug)
 
+#General Bayesian + TAN
+
 runBN(debug)
 
 runTAN(debug)
 
+#General Bayesian Networks
 
-runHC(debug)
+attributes <<- names(pc1.disc.data) #Global variable
+whitelist.arcs <<- NULL
 
-runMMHC(debug)
+#########Score Based
 
+
+runHC(debug) 
 runTABU(debug)
 
+
+#########Hybrid
+
+runMMHC(debug)
+runRSMAX2(debug)
 runHITON(debug)
 
-runRSMAX2(debug)
+
+
+#Constraint Based
 
 runGS(debug)
+runIAMB(debug)
+runMMPC(debug)
+runFASTIAMB(debug)
+runINTERIAMB(debug)
 
 
-#gs
-#str(pc1.disc.data)
+
+
+
 # Include an arc from class node to every other node
-len <- length(pc1.disc.data) #Number of attributes
-from <- NULL
+len <<- length(pc1.disc.data) #Number of attributes
+from <<- NULL
 for( i in 1:(len-1)){
-  from <- c( from,c("Defective")) 
+  from <- c( from,c("L")) 
 }
 from
-to <- NULL
-attributes <- names(pc1)
+to <<- NULL
+attributes <- names(pc1.disc.data)
 for(i in 1:(len-1) ){
-  to <- c(to, attributes[i]  )
+  to <<- c(to, attributes[i]  )
 }
+to
+
+whitelist.arcs <<- data.frame(from,to)
+setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1\\plots")
+
+#Build a BAN by including arc from Classification Node to every other node
+
+
+#runHC(debug) 
+#runTABU(debug)
+
+
+#########Hybrid
+
+runMMHC(debug)
+runRSMAX2(debug)
+runHITON(debug)
+
+
+
+#Constraint Based
+
+runGS(debug)
+runIAMB(debug)
+runMMPC(debug)
+runFASTIAMB(debug)
+runINTERIAMB(debug)
 
 
 
@@ -64,27 +115,6 @@ for(i in 1:(len-1) ){
 
 
 
-# pc1.iamb = empty.graph(attributes)
-# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-# #str(whitelist.arcs)
-# #names(whitelist.arcs)
-# pc1.iamb = cextend (  iamb(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-# 
-# pc1.iamb.fitted = bn.fit(pc1.iamb,pc1.disc.data)
-# 
-# pc1.iamb.pred<- predict(pc1.iamb.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-# 
-# table(pc1.iamb.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-# #Change the outputs to numeric values; 
-# pc1.given.iamb <- as.numeric(as.character(pc1.iamb.pred))
-# pc1.pred.iamb <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-# accuracy(f = pc1.given.iamb , x = pc1.pred.iamb)  #print the accuracy
-# 
-# #graphviz.plot(pc1.iamb)
-# 
-# 
-# 
-# 
 
 
 
@@ -94,57 +124,6 @@ for(i in 1:(len-1) ){
 
 
 
-
-# pc1.fast.iamb = empty.graph(attributes)
-# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-# #str(whitelist.arcs)
-# #names(whitelist.arcs)
-# pc1.fast.iamb = cextend (  fast.iamb(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-# 
-# pc1.fast.iamb.fitted = bn.fit(pc1.fast.iamb,pc1.disc.data)
-# 
-# pc1.fast.iamb.pred<- predict(pc1.fast.iamb.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-# 
-# table(pc1.fast.iamb.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-# #Change the outputs to numeric values; 
-# pc1.given.fast.iamb <- as.numeric(as.character(pc1.fast.iamb.pred))
-# pc1.pred.fast.iamb <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-# accuracy(f = pc1.given.fast.iamb , x = pc1.pred.fast.iamb)  #print the accuracy
-# 
-# #graphviz.plot(pc1.fast.iamb)
-# 
-# 
-# 
-# 
-# 
-# 
-
-
-
-
-
-
-
-
-# pc1.inter.iamb = empty.graph(attributes)
-# whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
-# #str(whitelist.arcs)
-# #names(whitelist.arcs)
-# pc1.inter.iamb = cextend (  inter.iamb(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
-# 
-# pc1.inter.iamb.fitted = bn.fit(pc1.inter.iamb,pc1.disc.data)
-# 
-# pc1.inter.iamb.pred<- predict(pc1.inter.iamb.fitted$Defective, pc1.disc.data) #2nd parameter should be pc1.test.data
-# 
-# table(pc1.inter.iamb.pred, pc1.disc.data[, "Defective"]) #output the prediction matrix
-# #Change the outputs to numeric values; 
-# pc1.given.inter.iamb <- as.numeric(as.character(pc1.inter.iamb.pred))
-# pc1.pred.inter.iamb <- as.numeric(as.character(pc1.disc.data[,"Defective"]))
-# accuracy(f = pc1.given.inter.iamb , x = pc1.pred.inter.iamb)  #print the accuracy
-# 
-# #graphviz.plot(pc1.inter.iamb)
-# 
-# 
 
 
 

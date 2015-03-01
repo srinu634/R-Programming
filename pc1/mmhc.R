@@ -10,9 +10,9 @@ runMMHC = function(debug) {
     print("Initialising Graph")
   }
   
-  pc1.mmhc = empty.graph(attributes)
+  pc1.mmhc = empty.graph(names(pc1.disc.data))
   
-  pc1.mmhc = cextend (  mmhc(pc1.disc.data,whitelist = NULL,debug=FALSE) ) # cextend :: makes sure that all edges are directed
+  pc1.mmhc = cextend (  mmhc(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE) ) # cextend :: makes sure that all edges are directed
   
   if(debug) {
     print("Learning the Parameters")

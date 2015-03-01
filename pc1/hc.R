@@ -13,7 +13,7 @@ runHC = function(debug) {
     pc1.hc = empty.graph(attributes)
     
     
-    pc1.hc = cextend (  hc(pc1.disc.data,whitelist = NULL,debug=FALSE,score=i) ) # cextend :: makes sure that all edges are directed
+    pc1.hc = cextend (  hc(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE,score=i) ) # cextend :: makes sure that all edges are directed
     
     pc1.hc.fitted = bn.fit(pc1.hc,pc1.disc.data)
     
@@ -34,7 +34,7 @@ runHC = function(debug) {
     print("Done with Score Based - Hill climbing Algorithm")
   }
   
-  png('./plots/hill_climb.png',units="in", width=11, height=8.5, res=300)
+  png(".//plots//hill_climb"+score1+".png",units="in", width=11, height=8.5, res=300)
   graphviz.plot(pc1.hc)
   dev.off()
 }

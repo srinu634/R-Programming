@@ -1,5 +1,5 @@
 preprocess  = function(debug) {
-  setwd("C:\Users\redhawk\Documents\GitHub\R-Programming\pc1\plots")
+  
   pc1 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
   
   Letters <<- c(letters,LETTERS)

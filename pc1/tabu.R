@@ -16,7 +16,7 @@ runTABU = function(debug) {
     pc1.tabu <<- empty.graph(attributes)
     
     
-    pc1.tabu <<- cextend (  tabu(pc1.disc.data,whitelist = NULL,debug=FALSE,score=i) ) # cextend :: makes sure that all edges are directed
+    pc1.tabu <<- cextend (  tabu(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE,score=i) ) # cextend :: makes sure that all edges are directed
     
    
     
