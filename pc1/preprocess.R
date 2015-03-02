@@ -2,10 +2,13 @@ preprocess  = function(debug) {
   
   pc1 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
   
+ # pc1 <<- sample(pc1) #Create a random permutation of the data
+  
+ # print(pc1)
   Letters <<- c(letters,LETTERS)
   colnames(pc1) <<- Letters[1:38]
 
-  print( str(pc1))
+ # print( str(pc1))
   
   pc1.test <<- pc1[(9*NROW(pc1)/10):NROW(pc1),] # Build a Test set
   pc1 <<- pc1[1:(9*NROW(pc1)/10-1),]

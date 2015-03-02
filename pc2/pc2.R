@@ -7,9 +7,9 @@ library(pROC)
 library(forecast)
 library(base)
 
-setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
+setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc2")
 
-sink("pc1.log.txt")
+sink("pc2.log2.txt")
 
 source("preprocess.R")
 source("bn.r")
@@ -28,7 +28,7 @@ source("interIAMB.R")
 
 
 
-debug = FALSE
+debug = TRUE
 
 preprocess(debug)
 
@@ -40,7 +40,7 @@ runTAN(debug)
 
 #General Bayesian Networks
 
-attributes <<- names(pc1.disc.data) #Global variable
+attributes <<- names(pc2.disc.data) #Global variable
 whitelist.arcs <<- NULL
 
 #########Score Based
@@ -71,21 +71,21 @@ runINTERIAMB(debug)
 
 
 # Include an arc from class node to every other node
-len <<- length(pc1.disc.data) #Number of attributes
+len <<- length(pc2.disc.data) #Number of attributes
 from <<- NULL
 for( i in 1:(len-1)){
-  from <- c( from,c("L")) 
+  from <- c( from,c("K")) 
 }
 from
 to <<- NULL
-attributes <- names(pc1.disc.data)
+attributes <- names(pc2.disc.data)
 for(i in 1:(len-1) ){
   to <<- c(to, attributes[i]  )
 }
 to
 
 whitelist.arcs <<- data.frame(from,to)
-setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1\\plots")
+setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc2\\plots")
 
 #Build a BAN by including arc from Classification Node to every other node
 
