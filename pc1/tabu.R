@@ -1,4 +1,4 @@
-runTABU = function(debug) {
+runTABU = function(debug,i) {
   
   
   
@@ -39,7 +39,7 @@ runTABU = function(debug) {
     pc1.pred.tabu <<- as.numeric(as.character(pc1.test.data[,"L"]))
     accuracy(f = pc1.given.tabu , x = pc1.pred.tabu)  #print the accuracy
     
-    png(paste("./plots/",i,".png",sep=""),units="in", width=11, height=8.5, res=300)
+    png(paste("./plots/tabu_",i,".png",sep=""),units="in", width=11, height=8.5, res=300)
     graphviz.plot(pc1.tabu)
     dev.off()
     

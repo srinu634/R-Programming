@@ -1,4 +1,4 @@
-runMMPC = function(debug) {
+runMMPC = function(debug,i) {
   pc1.mmpc = empty.graph(names(pc1.disc.data))
   #whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
   #str(whitelist.arcs)

@@ -1,4 +1,4 @@
-runGS = function(debug) {
+runGS = function(debug,i) {
   pc1.gs = empty.graph(names(pc1.disc.data))
   #whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
   #str(whitelist.arcs)

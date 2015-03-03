@@ -1,4 +1,4 @@
-runTAN = function(debug) {
+runTAN = function(debug,i) {
   
   if(debug){
     print("Running TAN")

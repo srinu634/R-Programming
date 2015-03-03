@@ -1,4 +1,4 @@
-runFASTIAMB = function( debug) {
+runFASTIAMB = function( debug,i) {
   pc1.fast.iamb = empty.graph( names(pc1.disc.data) )
   #whitelist.arcs = data.frame(from,to) #Arcs to be included in the graph
   

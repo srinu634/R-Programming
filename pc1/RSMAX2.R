@@ -1,4 +1,4 @@
-runRSMAX2 = function(debug) {
+runRSMAX2 = function(debug,i) {
   pc1.rsmax2 = empty.graph(names(pc1.disc.data))
  
   #str(whitelist.arcs)

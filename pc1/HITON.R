@@ -1,4 +1,4 @@
-runHITON = function(debug) {
+runHITON = function(debug,i) {
   pc1.si.hiton.pc = empty.graph(names(pc1.disc.data))
  
   #str(whitelist.arcs)

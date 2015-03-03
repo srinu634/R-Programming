@@ -1,4 +1,4 @@
-runMMHC = function(debug) {
+runMMHC = function(debug,i) {
   
   if(debug) {
     print("Running Hybrid Max-Min Hill climb Algorithm")

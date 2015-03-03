@@ -1,4 +1,4 @@
-runBN = function(debug) {
+runBN = function(debug,i) {
   
   if(debug) {
     print("In Naive Bayes classifier"  )   #output the prediction matrix
@@ -20,6 +20,8 @@ runBN = function(debug) {
   if(debug) {
     print("Done with Naive Bayes classifier"  )    #output the prediction matrix
   }
+  
+
   
   png('./plots/naive_bayes.png',units="in", width=11, height=8.5, res=300)
   graphviz.plot(pc1.bn)
