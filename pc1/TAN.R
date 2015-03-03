@@ -8,7 +8,7 @@ runTAN = function(debug) {
   #graphviz.plot(pc1.tan)
   pc1.fitted <<- bn.fit(pc1.tan, pc1.disc.data)
   #coefficients(pc1.fitted)
-  pc1.pred.tan <<- predict(pc1.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
+  pc1.pred.tan <<- predict(pc1.fitted, pc1.test.data) #2nd parameter should be pc1.test.data
   #pc1.pred.tan <- as.numeric(pc1.pred.tan)
   #pc1.perf.tan <- performance(pc1.pred.tan,  measure = "tpr",x.measure =   "fpr")
   print ( table(pc1.pred.tan, pc1.test.data[, "L"]) ) #output the prediction matrix

@@ -1,2 +1,567 @@
 [1] "Converting N,Y to 0,1"
 [1] "Discretising data"
+[1] "Factorising Discretised data"
+[1] "Reomving Single factored variables"
+[1] 2
+[1] 2
+[1] 2
+[1] 2
+[1] 6
+[1] 2
+[1] 5
+[1] 2
+[1] 4
+[1] 2
+[1] 2
+[1] 2
+[1] 4
+[1] 2
+[1] 3
+[1] 2
+[1] 5
+[1] 3
+[1] 3
+[1] 2
+[1] 4
+[1] 3
+[1] 6
+[1] 2
+[1] 1
+[1] 2
+[1] 1
+[1] 1
+[1] 1
+[1] 2
+[1] 2
+[1] 2
+[1] 21
+[1] 2
+[1] 26
+[1] 2
+[1] 27
+[1] 2
+[1] 12
+[1] 2
+[1] 14
+[1] 2
+[1] 2
+[1] 2
+[1] 27
+[1] 2
+[1] 27
+[1] 2
+[1] 4
+[1] 3
+[1] 2
+[1] 2
+[1] 4
+[1] 2
+[1] 4
+[1] 2
+[1] 7
+[1] 1
+[1] 14
+[1] 2
+[1] 15
+[1] 2
+[1] 4
+[1] 2
+[1] 4
+[1] 2
+[1] 12
+[1] 2
+[1] 12
+[1] 3
+[1] 7
+[1] 2
+[1] 2
+[1] 2
+[1] "Single factored variables are:"
+[1] "m" "n" "o" "C"
+[1] "In Naive Bayes classifier"
+           
+pc2.pred.bn  1  2
+          1 74  0
+          2  0  1
+         ME RMSE MAE MPE MAPE
+Test set  0    0   0   0    0
+[1] "Done with Naive Bayes classifier"
+null device 
+          1 
+[1] "Running TAN"
+            
+pc2.pred.tan  1  2
+           1 74  1
+           2  0  0
+[1] " Done with Running TAN"
+null device 
+          1 
+[1] "Running Score Based - Hill climbing Algorithm"
+[1] "Score considered is: "
+[1] "aic"
+[1] "Running Score Based - TABU algorithm"
+[1] "Score considered is: "
+[1] "bde"
+'data.frame':	75 obs. of  33 variables:
+ $ a: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ b: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ c: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ d: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ e: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ f: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ g: Factor w/ 2 levels "1","2": 2 2 2 2 2 1 2 2 2 2 ...
+ $ h: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ i: Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 3 ...
+ $ j: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ k: Factor w/ 3 levels "1","2","3": 3 1 1 3 1 1 3 3 1 3 ...
+ $ l: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ p: Factor w/ 2 levels "1","2": 1 2 2 2 2 1 1 2 2 2 ...
+ $ q: Factor w/ 2 levels "1","2": 1 1 1 1 1 2 1 1 1 1 ...
+ $ r: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ s: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ t: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ u: Factor w/ 2 levels "1","2": 1 1 1 1 1 2 1 1 1 1 ...
+ $ v: Factor w/ 2 levels "1","2": 2 2 2 2 2 2 2 2 2 2 ...
+ $ w: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ x: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ y: Factor w/ 3 levels "1","2","3": 1 3 3 3 1 1 3 3 1 3 ...
+ $ z: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ A: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ B: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ D: Factor w/ 2 levels "1","2": 1 1 1 1 1 2 1 1 1 1 ...
+ $ E: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ F: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ G: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ H: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ I: Factor w/ 3 levels "1","2","3": 1 1 1 1 1 3 3 1 1 1 ...
+ $ J: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ K: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+NULL
+List of 33
+ $ a:List of 4
+  ..$ node    : chr "a"
+  ..$ parents : chr "z"
+  ..$ children: chr [1:3] "e" "f" "l"
+  ..$ prob    : table [1:2, 1:2] 0.99328 0.00672 0.02703 0.97297
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ a: chr [1:2] "1" "2"
+  .. .. ..$ z: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ b:List of 4
+  ..$ node    : chr "b"
+  ..$ parents : chr "q"
+  ..$ children: chr [1:2] "k" "B"
+  ..$ prob    : table [1:2, 1:21] 0.889 0.111 0.667 0.333 0.487 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ b: chr [1:2] "1" "2"
+  .. .. ..$ q: chr [1:21] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ c:List of 4
+  ..$ node    : chr "c"
+  ..$ parents : chr "x"
+  ..$ children: chr [1:3] "g" "q" "J"
+  ..$ prob    : table [1:6, 1:27] 0.859 0.141 0 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ c: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ x: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ d:List of 4
+  ..$ node    : chr "d"
+  ..$ parents : chr [1:2] "H" "J"
+  ..$ children: chr "I"
+  ..$ prob    : table [1:5, 1:12, 1:7] 0.7745 0.1912 0.0343 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ d: chr [1:5] "1" "2" "3" "4" ...
+  .. .. ..$ H: chr [1:12] "1" "2" "3" "4" ...
+  .. .. ..$ J: chr [1:7] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ e:List of 4
+  ..$ node    : chr "e"
+  ..$ parents : chr [1:3] "a" "f" "z"
+  ..$ children: chr [1:5] "h" "i" "l" "A" ...
+  ..$ prob    : table [1:4, 1:2, 1:2, 1:2] 0.9061 0.0939 0 0 NaN ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ a: chr [1:2] "1" "2"
+  .. .. ..$ f: chr [1:2] "1" "2"
+  .. .. ..$ z: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ f:List of 4
+  ..$ node    : chr "f"
+  ..$ parents : chr [1:2] "a" "z"
+  ..$ children: chr [1:5] "e" "g" "j" "l" ...
+  ..$ prob    : table [1:2, 1:2, 1:2] 0.99154 0.00846 0 1 1 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ f: chr [1:2] "1" "2"
+  .. .. ..$ a: chr [1:2] "1" "2"
+  .. .. ..$ z: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ g:List of 4
+  ..$ node    : chr "g"
+  ..$ parents : chr [1:2] "c" "f"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:4, 1:6, 1:2] 0 0.0479 0 0.9521 0.1298 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ g: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ c: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ f: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ h:List of 4
+  ..$ node    : chr "h"
+  ..$ parents : chr [1:3] "e" "p" "F"
+  ..$ children: chr "A"
+  ..$ prob    : table [1:3, 1:4, 1:2, 1:4] 1 0 0 1 0 0 NaN NaN NaN NaN ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ h: chr [1:3] "1" "2" "3"
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ p: chr [1:2] "1" "2"
+  .. .. ..$ F: chr [1:4] "1" "2" "3" "4"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ i:List of 4
+  ..$ node    : chr "i"
+  ..$ parents : chr [1:3] "e" "y" "z"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:5, 1:4, 1:4, 1:2] 0.9615 0 0.022 0 0.0165 ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ i: chr [1:5] "1" "2" "3" "4" ...
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ y: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ z: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ j:List of 4
+  ..$ node    : chr "j"
+  ..$ parents : chr [1:3] "f" "k" "l"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:3, 1:2, 1:4, 1:6] NaN NaN NaN NaN NaN NaN 1 0 0 NaN ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ j: chr [1:3] "1" "2" "3"
+  .. .. ..$ f: chr [1:2] "1" "2"
+  .. .. ..$ k: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ k:List of 4
+  ..$ node    : chr "k"
+  ..$ parents : chr [1:2] "b" "l"
+  ..$ children: chr "j"
+  ..$ prob    : table [1:4, 1:2, 1:6] 0 0.56184 0.00707 0.4311 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ k: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ b: chr [1:2] "1" "2"
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ l:List of 4
+  ..$ node    : chr "l"
+  ..$ parents : chr [1:3] "a" "e" "f"
+  ..$ children: chr [1:6] "j" "k" "u" "y" ...
+  ..$ prob    : table [1:6, 1:2, 1:4, 1:2] 0.71751 0.27684 0 0.00377 0 ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ a: chr [1:2] "1" "2"
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ f: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ p:List of 4
+  ..$ node    : chr "p"
+  ..$ parents : chr "t"
+  ..$ children: chr "h"
+  ..$ prob    : table [1:2, 1:12] 0.99797 0.00203 0.91429 0.08571 0.97778 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ p: chr [1:2] "1" "2"
+  .. .. ..$ t: chr [1:12] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ q:List of 4
+  ..$ node    : chr "q"
+  ..$ parents : chr [1:2] "c" "K"
+  ..$ children: chr [1:2] "b" "F"
+  ..$ prob    : table [1:21, 1:6, 1:2] 0.62671 0.00685 0.31164 0 0.0274 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ q: chr [1:21] "1" "2" "3" "4" ...
+  .. .. ..$ c: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ r:List of 4
+  ..$ node    : chr "r"
+  ..$ parents : chr "s"
+  ..$ children: chr "v"
+  ..$ prob    : table [1:26, 1:27] 0.5443 0 0.18987 0.00949 0.22152 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ r: chr [1:26] "1" "2" "3" "4" ...
+  .. .. ..$ s: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ s:List of 4
+  ..$ node    : chr "s"
+  ..$ parents : chr "x"
+  ..$ children: chr [1:4] "r" "w" "G" "K"
+  ..$ prob    : table [1:27, 1:27] 0.9453 0 0.0322 0 0.0225 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ s: chr [1:27] "1" "2" "3" "4" ...
+  .. .. ..$ x: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ t:List of 4
+  ..$ node    : chr "t"
+  ..$ parents : chr [1:2] "x" "K"
+  ..$ children: chr [1:2] "p" "E"
+  ..$ prob    : table [1:12, 1:27, 1:2] 1 0 0 0 0 0 0 0 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ t: chr [1:12] "1" "2" "3" "4" ...
+  .. .. ..$ x: chr [1:27] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ u:List of 4
+  ..$ node    : chr "u"
+  ..$ parents : chr "l"
+  ..$ children: chr "x"
+  ..$ prob    : table [1:14, 1:6] 0.8031 0.0446 0.0866 0.063 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ u: chr [1:14] "1" "2" "3" "4" ...
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ v:List of 4
+  ..$ node    : chr "v"
+  ..$ parents : chr [1:2] "r" "K"
+  ..$ children: chr [1:2] "y" "F"
+  ..$ prob    : table [1:2, 1:26, 1:2] 0 1 NaN NaN 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ v: chr [1:2] "1" "2"
+  .. .. ..$ r: chr [1:26] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ w:List of 4
+  ..$ node    : chr "w"
+  ..$ parents : chr [1:2] "s" "K"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:27, 1:27, 1:2] 1 0 0 0 0 0 0 0 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ w: chr [1:27] "1" "2" "3" "4" ...
+  .. .. ..$ s: chr [1:27] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ x:List of 4
+  ..$ node    : chr "x"
+  ..$ parents : chr "u"
+  ..$ children: chr [1:4] "c" "s" "t" "D"
+  ..$ prob    : table [1:27, 1:14] 0.9482 0 0.0518 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ x: chr [1:27] "1" "2" "3" "4" ...
+  .. .. ..$ u: chr [1:14] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ y:List of 4
+  ..$ node    : chr "y"
+  ..$ parents : chr [1:2] "l" "v"
+  ..$ children: chr "i"
+  ..$ prob    : table [1:4, 1:6, 1:2] 0.406 0 0.333 0.261 0.5 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ y: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ v: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ z:List of 4
+  ..$ node    : chr "z"
+  ..$ parents : chr(0) 
+  ..$ children: chr [1:4] "a" "e" "f" "i"
+  ..$ prob    : table [1:2(1d)] 0.889 0.111
+  .. ..- attr(*, "dimnames")=List of 1
+  .. .. ..$ : chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ A:List of 4
+  ..$ node    : chr "A"
+  ..$ parents : chr [1:2] "e" "h"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:4, 1:4, 1:3] 1 0 0 0 0 1 0 0 NaN NaN ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ A: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ h: chr [1:3] "1" "2" "3"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ B:List of 4
+  ..$ node    : chr "B"
+  ..$ parents : chr [1:3] "b" "e" "l"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:4, 1:2, 1:4, 1:6] 1 0 0 0 1 0 0 0 NaN NaN ...
+  .. ..- attr(*, "dimnames")=List of 4
+  .. .. ..$ B: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ b: chr [1:2] "1" "2"
+  .. .. ..$ e: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ D:List of 4
+  ..$ node    : chr "D"
+  ..$ parents : chr "x"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:14, 1:27] 1 0 0 0 0 0 0 0 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ D: chr [1:14] "1" "2" "3" "4" ...
+  .. .. ..$ x: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ E:List of 4
+  ..$ node    : chr "E"
+  ..$ parents : chr "t"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:15, 1:12] 0.9614 0.0203 0.0183 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ E: chr [1:15] "1" "2" "3" "4" ...
+  .. .. ..$ t: chr [1:12] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ F:List of 4
+  ..$ node    : chr "F"
+  ..$ parents : chr [1:2] "q" "v"
+  ..$ children: chr "h"
+  ..$ prob    : table [1:4, 1:21, 1:2] 1 0 0 0 1 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ F: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ q: chr [1:21] "1" "2" "3" "4" ...
+  .. .. ..$ v: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ G:List of 4
+  ..$ node    : chr "G"
+  ..$ parents : chr [1:2] "f" "s"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:4, 1:2, 1:27] 0.9715 0.0285 0 0 NaN ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ G: chr [1:4] "1" "2" "3" "4"
+  .. .. ..$ f: chr [1:2] "1" "2"
+  .. .. ..$ s: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ H:List of 4
+  ..$ node    : chr "H"
+  ..$ parents : chr [1:2] "J" "K"
+  ..$ children: chr "d"
+  ..$ prob    : table [1:12, 1:7, 1:2] 0.9621 0.0213 0 0.0118 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ H: chr [1:12] "1" "2" "3" "4" ...
+  .. .. ..$ J: chr [1:7] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ I:List of 4
+  ..$ node    : chr "I"
+  ..$ parents : chr [1:2] "d" "K"
+  ..$ children: chr(0) 
+  ..$ prob    : table [1:12, 1:5, 1:2] 0.83942 0.0073 0.09246 0.00973 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ I: chr [1:12] "1" "2" "3" "4" ...
+  .. .. ..$ d: chr [1:5] "1" "2" "3" "4" ...
+  .. .. ..$ K: chr [1:2] "1" "2"
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ J:List of 4
+  ..$ node    : chr "J"
+  ..$ parents : chr [1:2] "c" "l"
+  ..$ children: chr [1:2] "d" "H"
+  ..$ prob    : table [1:7, 1:6, 1:6] 1 0 0 0 0 ...
+  .. ..- attr(*, "dimnames")=List of 3
+  .. .. ..$ J: chr [1:7] "1" "2" "3" "4" ...
+  .. .. ..$ c: chr [1:6] "1" "2" "3" "4" ...
+  .. .. ..$ l: chr [1:6] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ $ K:List of 4
+  ..$ node    : chr "K"
+  ..$ parents : chr "s"
+  ..$ children: chr [1:6] "q" "t" "v" "w" ...
+  ..$ prob    : table [1:2, 1:27] 1 0 0 1 1 0 0.5 0.5 1 0 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ K: chr [1:2] "1" "2"
+  .. .. ..$ s: chr [1:27] "1" "2" "3" "4" ...
+  ..- attr(*, "class")= chr "bn.fit.dnode"
+ - attr(*, "class")= chr [1:2] "bn.fit" "bn.fit.dnet"
+NULL
+[1] "Running Hybrid Max-Min Hill climb Algorithm"
+[1] "Initialising Graph"
+[1] "Learning the Parameters"
+             
+pc2.mmhc.pred  1  2
+            1 74  1
+            2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+[1] "Done with MMHC"
+null device 
+          1 
+               
+pc2.rsmax2.pred  1  2
+              1 74  1
+              2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+           
+pc2.gs.pred  1  2
+          1 74  1
+          2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+             
+pc2.iamb.pred  1  2
+            1 74  1
+            2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+             
+pc2.mmpc.pred  1  2
+            1 74  1
+            2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+null device 
+          1 
+                   
+pc2.inter.iamb.pred  1  2
+                  1 74  1
+                  2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+ [1] "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K" "K"
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" "A" "B" "D" "E" "F" "G" "H" "I" "J"
+[1] "Running Hybrid Max-Min Hill climb Algorithm"
+[1] "Initialising Graph"
+[1] "Learning the Parameters"
+             
+pc2.mmhc.pred  1  2
+            1 74  1
+            2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+[1] "Done with MMHC"
+null device 
+          1 
+               
+pc2.rsmax2.pred  1  2
+              1 74  1
+              2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+           
+pc2.gs.pred  1  2
+          1 74  1
+          2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+             
+pc2.iamb.pred  1  2
+            1 74  1
+            2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 
+null device 
+          1 
+                   
+pc2.inter.iamb.pred  1  2
+                  1 74  1
+                  2  0  0
+                 ME      RMSE        MAE       MPE      MAPE
+Test set 0.01333333 0.1154701 0.01333333 0.6666667 0.6666667
+null device 
+          1 

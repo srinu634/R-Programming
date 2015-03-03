@@ -1,0 +1,20 @@
+            
+jm1.pred.tan    1    2
+           1 1541  405
+           2    0    0
+null device 
+          1 
+           
+jm1.pred.bn    1    2
+          1 1475   58
+          2   66  347
+                 ME      RMSE      MAE       MPE     MAPE
+Test set 0.01130524 0.5797189 0.336074 -7.553957 24.92292
+null device 
+          1 
+            
+jm1.pred.tan    1    2
+           1 1541  405
+           2    0    0
+null device 
+          1 
