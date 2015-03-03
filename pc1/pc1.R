@@ -9,7 +9,7 @@ library(base)
 
 setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
 
-sink("pc1.log.txt")
+#sink("pc1.log.txt")
 
 source("preprocess.R")
 source("bn.r")
@@ -37,6 +37,9 @@ preprocess(debug)
 runBN(debug)
 
 runTAN(debug)
+
+
+
 
 #General Bayesian Networks
 

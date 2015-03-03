@@ -10,7 +10,7 @@ runFASTIAMB = function( debug) {
   
   pc1.fast.iamb.pred<- predict(pc1.fast.iamb.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
   
-  table(pc1.fast.iamb.pred, pc1.test.data[, "L"]) #output the prediction matrix
+  print( table(pc1.fast.iamb.pred, pc1.test.data[, "L"]) ) #output the prediction matrix
   #Change the outputs to numeric values; 
   pc1.given.fast.iamb <- as.numeric(as.character(pc1.fast.iamb.pred))
   pc1.pred.fast.iamb <- as.numeric(as.character(pc1.test.data[,"L"]))

@@ -4,7 +4,7 @@ runMMHC = function(debug) {
     print("Running Hybrid Max-Min Hill climb Algorithm")
   }
   
-  attributes <- names(pc1.disc.data)
+  #attributes <- names(pc1.disc.data)
   
   if(debug) {
     print("Initialising Graph")
@@ -18,9 +18,9 @@ runMMHC = function(debug) {
     print("Learning the Parameters")
   }
   
-  pc1.mmhc.fitted = bn.fit(pc1.mmhc,pc1.disc.data)
+  pc1.mmhc.fitted <<- bn.fit(pc1.mmhc,pc1.disc.data)
   
-  pc1.mmhc.pred<- predict(pc1.mmhc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
+  pc1.mmhc.pred<<- predict(pc1.mmhc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
   
   print( table(pc1.mmhc.pred, pc1.test.data[, "L"])) #output the prediction matrix
   #Change the outputs to numeric values; 

@@ -3,6 +3,10 @@ preprocess  = function(debug) {
   pc1 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
   
  # pc1 <<- sample(pc1) #Create a random permutation of the data
+ 
+  pc1.temp <<- mdlp(pc1)
+ 
+ pc1 <<- data.frame( pc1.temp$Disc.data )
   
  # print(pc1)
   Letters <<- c(letters,LETTERS)
@@ -13,30 +17,22 @@ preprocess  = function(debug) {
   pc1.test <<- pc1[(9*NROW(pc1)/10):NROW(pc1),] # Build a Test set
   pc1 <<- pc1[1:(9*NROW(pc1)/10-1),]
   
-  # str(pc1) 
+ 
   
-  # Change the Strings Y,N to 1,0
-  
-  if( debug){
-    print("Converting N,Y to 0,1")
-  }
-  
-  pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
-  pc1.test$L  <<- as.numeric(pc1.test$L , levels=c("N" ,"Y") ) 
+  #pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
+  #pc1.test$L  <<- as.numeric(pc1.test$L , levels=c("N" ,"Y") ) 
   
   
   if( debug){
     print("Discretising data")
   }
   
-  #discretize the data for bayesian networks
-  pc1.disc  <<- chiM(pc1, alpha = 0.05) 
-  pc1.test.disc  <<- chiM(pc1.test,alpha=0.05)
+  
   
   
   #load the data into a data frame
-  pc1.disc.data  <<- data.frame(pc1.disc$Disc.data)
-  pc1.test.data  <<- data.frame(pc1.test.disc$Disc.data)
+  pc1.disc.data  <<- data.frame(pc1)
+  pc1.test.data  <<- data.frame(pc1.test)
  
   
   if( debug){
@@ -66,6 +62,8 @@ preprocess  = function(debug) {
     if ( length( levels( pc1.test.data[,i] ) ) == 1) {
       excludevars  <<- c(excludevars,names(pc1.test.data)[i])
     } 
+    
+   
   } #for
   
   

@@ -13,7 +13,7 @@ runBN = function(debug) {
 
   #Change the outputs to numeric values; Happens at two levels. 1) Change the params to characters 2) Change the characters to numeric.
   pc1.given.bn  <<- as.numeric(as.character(pc1.pred.bn))
-  pc1.predicted.bn  <<- as.numeric(as.character(pc1.disc.data[,"L"]))
+  pc1.predicted.bn  <<- as.numeric(as.character(pc1.test.data[,"L"]))
   print(  accuracy(f = pc1.given.bn , x = pc1.predicted.bn) ) #print the accuracy
   
 
