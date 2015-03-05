@@ -24,11 +24,14 @@ runGS = function(debug,i) {
  print(  accuracy(f = pc1.given.gs , x = pc1.pred.gs) ) #print the accuracy
   
   
-  
+ if(  identical(whitelist.arcs,NULL) ) 
+   temp.path = "\\GS"
+ else
+   temp.path = "\\GS\\BAN" 
  
- png('./plots/grow_shrink.png',units="in", width=11, height=8.5, res=300)
- graphviz.plot(pc1.gs)
- dev.off()
+ 
+ drawPlot(temp.path,pc1.gs,paste("gs",i,sep="")) ;
+    
   
   
   

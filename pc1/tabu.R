@@ -4,7 +4,7 @@ runTABU = function(debug,i) {
   
   score1 <- c("bde","k2","aic")
  
-  for( i in score1) {
+  for( j in score1) {
     
     if(debug){
       print("Running Score Based - TABU algorithm")
@@ -16,7 +16,7 @@ runTABU = function(debug,i) {
     pc1.tabu <<- empty.graph(names(pc1.disc.data))
     
     
-    pc1.tabu <<- cextend (  tabu(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE,score=i) ) # cextend :: makes sure that all edges are directed
+    pc1.tabu <<- cextend (  tabu(pc1.disc.data,whitelist = whitelist.arcs,debug=FALSE,score=j) ) # cextend :: makes sure that all edges are directed
     
    
     
@@ -39,11 +39,14 @@ runTABU = function(debug,i) {
     pc1.pred.tabu <<- as.numeric(as.character(pc1.test.data[,"L"]))
     accuracy(f = pc1.given.tabu , x = pc1.pred.tabu)  #print the accuracy
     
-    png(paste("./plots/tabu_",i,".png",sep=""),units="in", width=11, height=8.5, res=300)
-    graphviz.plot(pc1.tabu)
-    dev.off()
+   
+    if(  identical(whitelist.arcs,NULL) ) 
+      temp.path = "\\TABU"
+    else
+      temp.path = "\\TABU\\BAN" 
     
-    #graphviz.plot(pc1.tabu)
+    
+    drawPlot(temp.path,pc1.tabu,paste("tabu_",j,"_",i,sep="") ) ;
   }
 
 }

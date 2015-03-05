@@ -28,12 +28,13 @@ runMMHC = function(debug,i) {
   pc1.pred.mmhc <- as.numeric(as.character(pc1.test.data[,"L"]))
   print( accuracy(f = pc1.given.mmhc , x = pc1.pred.mmhc) )  #print the accuracy
   
-  if(debug) {
-    print("Done with MMHC")
-  }
-  png('./plots/mmhc.png',units="in", width=11, height=8.5, res=300)
-  graphviz.plot(pc1.mmhc)
-  dev.off()
+  if(  identical(whitelist.arcs,NULL) ) 
+    temp.path = "\\MMHC"
+  else
+    temp.path = "\\MMHC\\BAN" 
+  
+  
+  drawPlot(temp.path,pc1.mmhc,paste("mmhc",i,sep="")) ;
   
   #graphviz.plot(pc1.mmhc)
   

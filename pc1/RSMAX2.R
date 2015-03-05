@@ -15,8 +15,12 @@ runRSMAX2 = function(debug,i) {
   pc1.pred.rsmax2 <- as.numeric(as.character(pc1.test.data[,"L"]))
   print( accuracy(f = pc1.given.rsmax2 , x = pc1.pred.rsmax2)  ) #print the accuracy
  
- png('./plots/rsmax2.png',units="in", width=11, height=8.5, res=300)
- graphviz.plot(pc1.rsmax2)
- dev.off()
+ if(  identical(whitelist.arcs,NULL) ) 
+   temp.path = "\\RSMAX2"
+ else
+   temp.path = "\\RSMAX2\\BAN" 
+ 
+ 
+ drawPlot(temp.path,pc1.rsmax2,paste("RSMAX2",i,sep="")) ;
 
 }

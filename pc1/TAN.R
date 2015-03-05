@@ -23,9 +23,6 @@ runTAN = function(debug,i) {
     print(" Done with Running TAN")
   }
   
-  
-  
-  png('./plots/tan.png',units="in", width=11, height=8.5, res=300)
-  graphviz.plot(pc1.tan)
-  dev.off()
+  drawPlot("\\TAN",pc1.tan,paste("tan",i,sep="")) ;
+
 }

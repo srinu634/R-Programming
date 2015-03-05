@@ -11,103 +11,32 @@ setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
 
 #sink("pc1.log.txt")
 
+source("initialize.R")
+source("start.R")
 source("preprocess.R")
+source("drawPlot.R")
 source("bn.r")
 source("TAN.R")
 source("hc.R")
-source("mmhc.R")
 source("tabu.R")
+source("mmhc.R")
 source("HITON.R")
 source("RSMAX2.R")
 source("mmpc.R")
 source("gs.R")
-source("IAMB.R")
+#source("IAMB.R")
 source("mmpc.R")
-source("fastIAMB.R")
-source("interIAMB.R")
-source("runPC1.R")
+#source("fastIAMB.R")
+#source("interIAMB.R")
 
 
+initialize() ;
 
 
 debug = FALSE
 
  i= 0
-  preprocess(debug,i)
-  
-  runBN(debug,i) 
-  runTAN(debug,i)
-  
-  attribute <<- names(pc1.disc.data) #Global variable
-  
-  whitelist.arcs <<- NULL
-  
-  #########Score Based
-  
-  
-  runHC(debug,i) 
-  runTABU(debug,i)
-  
-  
-  #########Hybrid
-  
-  runMMHC(debug,i)
-  runRSMAX2(debug,i)
-  # runHITON(debug,i)
-  
-  
-  
-  #Constraint Based
-  
-  runGS(debug,i)
-  runIAMB(debug,i)
-  #runMMPC(debug,i)
-  runFASTIAMB(debug,i)
-  runINTERIAMB(debug,i)
-  
-  
-  
-  
-  
-  # Include an arc from class node to every other node
-  len <<- length(pc1.disc.data) #Number of attributes
-  from <<- NULL
-  for( j in 1:(len-1)){
-    from <- c( from,c("L")) 
-  }
-  #from
-  to <<- NULL
-  
-  for(j in 1:(len-1) ){
-    to <<- c(to, attribute[j]  )
-  }
-  #to
-  
-  whitelist.arcs <<- data.frame(from,to)
-  setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1\\plots")
-  
-  #Build a BAN by including arc from Classification Node to every other node
-  
-  
-  runHC(debug,i) 
-  runTABU(debug,i)
-  
-  
-  #########Hybrid
-  
-  runMMHC(debug,i)
-  runRSMAX2(debug,i)
-  #runHITON(debug,i)
-  
-  
-  
-  #Constraint Based
-  
-  runGS(debug,i)
-  runIAMB(debug,i)
-  #runMMPC(debug,i)
-  runFASTIAMB(debug,i)
-  runINTERIAMB(debug,i)
-  
+  for( i in 1:10)
+    startProcess(debug,i)
   setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
   

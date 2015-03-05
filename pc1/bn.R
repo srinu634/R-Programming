@@ -22,9 +22,9 @@ runBN = function(debug,i) {
   }
   
 
+  drawPlot("\\BN",pc1.bn,paste("bn",i,sep="")) ;
   
-  png('./plots/naive_bayes.png',units="in", width=11, height=8.5, res=300)
-  graphviz.plot(pc1.bn)
-  dev.off()
+ 
+  
 
 }
