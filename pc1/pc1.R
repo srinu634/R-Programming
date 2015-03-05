@@ -89,8 +89,8 @@ debug = FALSE
   #Build a BAN by including arc from Classification Node to every other node
   
   
-  #runHC(debug,i) 
-  #runTABU(debug,i)
+  runHC(debug,i) 
+  runTABU(debug,i)
   
   
   #########Hybrid
@@ -109,5 +109,5 @@ debug = FALSE
   runFASTIAMB(debug,i)
   runINTERIAMB(debug,i)
   
-  
+  setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
   

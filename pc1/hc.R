@@ -27,14 +27,17 @@ runHC = function(debug,i) {
     
     #graphviz.plot(pc1.hc)
   
-  } #for 
-  
-  
+    png(paste("./plots/hc_",i,".png",sep=""),units="in", width=11, height=8.5, res=300)
+    graphviz.plot(pc1.hc)
+    dev.off()
+  }
   if(debug){
     print("Done with Score Based - Hill climbing Algorithm")
+    
+    } 
+  
+  
+  
   }
   
-  png( paste(".//plots//hc_",score1,".png",sep="") ,units="in", width=11, height=8.5, res=300)
-  graphviz.plot(pc1.hc)
-  dev.off()
-}
+ 
