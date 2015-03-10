@@ -48,7 +48,35 @@ runTABU = function(debug,i) {
     else
       temp.path = "\\TABU\\BAN" 
     
-    #pc1.tan.auc <- sapply( pc1.test.data, as.numeric )
+    #
+    pc1.test.data.numeric <- sapply( pc1.test.data, as.numeric )
+    
+    
+    if( identical(j,"aic" ) ){
+      if( i==1  )
+        auc.tabu.aic <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE )
+      else{
+        
+        auc.tabu.aic <<- rbind( auc.tabu.aic,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE ) )
+      }  
+    }
+    else if( identical(j,"k2") ) { 
+      if( i==1  )
+        auc.tabu.k2 <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE )
+      else{
+        
+        auc.tabu.k2 <<- rbind( auc.tabu.k2,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE ) )
+      }  
+    }
+    else {
+      if( i==1  )
+        auc.tabu.bde <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE )
+      else{
+        
+        auc.tabu.bde <<- rbind( auc.tabu.bde,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.tabu) , plotROC=TRUE ) )
+      }  
+    }
+    #
    
     
     drawPlot(temp.path,pc1.tabu,paste("tabu_",j,"_",i,sep="") ) ;

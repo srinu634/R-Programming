@@ -32,8 +32,36 @@ runHC = function(debug,i) {
       temp.path = "\\HC"
     else
       temp.path = "\\HC\\BAN" 
+    pc1.test.data.numeric <- sapply( pc1.test.data, as.numeric )
     
     
+    if( identical(j,"aic" ) ){
+      if( i==1  )
+        auc.hc.aic <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE )
+      else{
+        
+        auc.hc.aic <<- rbind( auc.hc.aic,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE ) )
+      }  
+    }
+    else if( identical(j,"k2") ) { 
+      if( i==1  )
+        auc.hc.k2 <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE )
+      else{
+        
+        auc.hc.k2 <<- rbind( auc.hc.k2,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE ) )
+      }  
+    }
+    else {
+      if( i==1  )
+        auc.hc.bde <<- colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE )
+      else{
+        
+        auc.hc.bde <<- rbind( auc.hc.bde,colAUC(  pc1.test.data.numeric [,- length(pc1.test.data)] , as.numeric( pc1.pred.hc) , plotROC=TRUE ) )
+      }  
+    }
+    
+    
+    }
   
     
     #print (  colAUC(  pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
@@ -46,6 +74,6 @@ runHC = function(debug,i) {
   
   
   
-  }
+  
   
  
