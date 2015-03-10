@@ -17,11 +17,30 @@ runTAN = function(debug,i) {
   pc1.pred.tan <<- as.numeric(as.character(pc1.test.data[,"L"]))
   accuracy(f = pc1.given.tan , x = pc1.pred.tan)  #print the accuracy
   
+  pc1.tan.auc <- sapply( pc1.test.data, as.numeric )
+  print (  colAUC( pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
+  
+  
   #score(pc1.tan, pc1.disc.data, type = "bde")
-  #score(pc1.bn,pc1.disc.data,type="bde")
+  #score(pc1.tan,pc1.disc.data,type="bde")
   if(debug){
     print(" Done with Running TAN")
   }
+  
+  
+  pc1.tan.auc <- sapply( pc1.test.data, as.numeric )
+  print (  colAUC( pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
+  
+  
+  if( i==1  )
+    auc.tan <<- colAUC(  pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE )
+  else{
+    
+    auc.tan <<- rbind( auc.tan,colAUC(  pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
+  }
+  
+  print (  colAUC(  pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
+  
   
   drawPlot("\\TAN",pc1.tan,paste("tan",i,sep="")) ;
 

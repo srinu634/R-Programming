@@ -17,10 +17,10 @@ runGS = function(debug,i) {
   
   pc1.gs.pred<- predict(pc1.gs.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
   
-  print( table(pc1.gs.pred, pc1.test.data[, "L"])  ) #output the prediction matrix
+  print( table(pc1.gs.pred, pc1.test.data[,length(pc1.test.data)] )  ) #output the prediction matrix
   #Change the outputs to numeric values; 
   pc1.given.gs <- as.numeric(as.character(pc1.gs.pred))
-  pc1.pred.gs <- as.numeric(as.character(pc1.test.data[,"L"]))
+  pc1.pred.gs <- as.numeric(as.character(    pc1.test.data[,length(pc1.test.data)]    ))
  print(  accuracy(f = pc1.given.gs , x = pc1.pred.gs) ) #print the accuracy
   
   
@@ -29,6 +29,27 @@ runGS = function(debug,i) {
  else
    temp.path = "\\GS\\BAN" 
  
+ pc1.gs.auc <- sapply( pc1.test.data, as.numeric )
+ print (  colAUC(  pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE ) )
+ 
+ 
+ # 
+ pc1.gs.auc <- sapply( pc1.test.data, as.numeric )
+ print (  colAUC(  pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE ) )
+ 
+ pc1.gs.auc <- sapply( pc1.test.data, as.numeric )
+ print (  colAUC( pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE ) )
+ 
+ 
+ if( i==1  )
+   auc.gs <<- colAUC(  pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE )
+ else{
+   
+   auc.gs <<- rbind( auc.gs,colAUC(  pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE ) )
+ }
+ 
+ print (  colAUC(  pc1.gs.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.gs) , plotROC=TRUE ) )
+ #
  
  drawPlot(temp.path,pc1.gs,paste("gs",i,sep="")) ;
     

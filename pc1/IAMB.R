@@ -15,8 +15,11 @@ runIAMB = function(debug,i) {
   pc1.pred.iamb <- as.numeric(as.character(pc1.test.data[,"L"]))
   print ( accuracy(f = pc1.given.iamb , x = pc1.pred.iamb) ) #print the accuracy
   
-  png('./plots/IAMB.png',units="in", width=11, height=8.5, res=300)
-  graphviz.plot(pc1.iamb)
-  dev.off()
+  pc1.iamb.auc <- sapply( pc1.test.data, as.numeric )
+  print (  colAUC(  pc1.iamb.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.iamb) , plotROC=TRUE ) )
+  
+ # png('/plots/IAMB.png',units="in", width=11, height=8.5, res=300)
+ # graphviz.plot(pc1.iamb)
+ # dev.off()
   
 }

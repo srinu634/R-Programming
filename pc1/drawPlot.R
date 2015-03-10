@@ -9,6 +9,10 @@ drawPlot = function(path,g,gname ) {
     
     specific.path <<- paste( common.path , path,sep="")
   
+    
+    
+    Letters <<- c(letters,LETTERS)
+    colnames(pc1) <<- Letters[1:length(pc1)]
 
   
   setwd(specific.path)

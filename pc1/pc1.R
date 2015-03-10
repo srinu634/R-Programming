@@ -6,6 +6,8 @@ library(ROCR)
 library(pROC)
 library(forecast)
 library(base)
+library(gRain)
+library(caTools)
 
 setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
 
@@ -24,8 +26,8 @@ source("HITON.R")
 source("RSMAX2.R")
 source("mmpc.R")
 source("gs.R")
-#source("IAMB.R")
 source("mmpc.R")
+source("IAMB.R")
 #source("fastIAMB.R")
 #source("interIAMB.R")
 
@@ -36,7 +38,9 @@ initialize() ;
 debug = FALSE
 
  i= 0
-  for( i in 1:10)
+  for( i in 1:10){
+   paste("In iteration",i ,sep= " ")
     startProcess(debug,i)
+  }
   setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1")
   

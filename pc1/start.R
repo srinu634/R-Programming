@@ -41,7 +41,7 @@ startProcess = function(debug,i){
   len <<- length(pc1.disc.data) #Number of attributes
   from <<- NULL
   for( j in 1:(len-1)){
-    from <- c( from,c("L")) 
+    from <- c( from,c(   names(pc1)[length(pc1)] ) ) 
   }
   #from
   to <<- NULL

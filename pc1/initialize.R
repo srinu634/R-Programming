@@ -5,7 +5,6 @@ initialize = function( ) {
   dataset.name <<- "pc1"
   common.path <<- paste("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\",dataset.name,"\\plots",sep="") 
  
-  
   dir.create(common.path, showWarnings = TRUE, recursive = FALSE, mode = "0777")
   
   #Create Appropriate Directories
@@ -16,12 +15,10 @@ initialize = function( ) {
     newpath = paste(common.path,paths[i],sep="")
     dir.create(newpath, showWarnings = TRUE, recursive = FALSE, mode = "0777")
   }
- 
+  
+  #Accuracy for each bayesian network
   
   
   
   
-  
-  
-
 }

@@ -3,7 +3,16 @@ preprocess  = function(debug,i) {
   
   pc1 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc1.arff") #Load the dataset
   
-  pc1.temp <<- pc1[sample.int(nrow(pc1)),]
+  Letters <<- c(letters,LETTERS)
+  colnames(pc1) <<- c ( Letters[1:length(pc1)] )
+  
+  pc1.temp <<- pc1[sample.int(nrow(pc1)),] #Shuffle the rows 
+  
+  
+ # pc1.temp <<- pc1.temp[ , c( length(pc1.temp) , (1 : (length(pc1.temp) -1 )) ) ]
+ # pc1<<- pc1[ , c( length(pc1) , (1 : (length(pc1) -1 ) ) ]
+
+  
   pc1 <<- pc1.temp
   
  # pc1 <<- sample(pc1) #Create a random permutation of the data
@@ -13,8 +22,7 @@ preprocess  = function(debug,i) {
   pc1 <<- data.frame( pc1.temp$Disc.data )
   
  # print(pc1)
-  Letters <<- c(letters,LETTERS)
-  colnames(pc1) <<- Letters[1:length(pc1)]
+ 
 
  # print( str(pc1))
   
@@ -23,8 +31,8 @@ preprocess  = function(debug,i) {
   
  
   
-  #pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
-  #pc1.test$L  <<- as.numeric(pc1.test$L , levels=c("N" ,"Y") ) 
+  pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
+  pc1.test$L  <<- as.numeric(pc1.test$L , levels=c("N" ,"Y") ) 
   
   
   if( debug){

@@ -19,18 +19,24 @@ runHC = function(debug,i) {
     
     pc1.hc.pred<- predict(pc1.hc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
     
-    print ( table(pc1.hc.pred, pc1.test.data[, "L"]) ) #output the prediction matrix
+    print ( table(pc1.hc.pred, pc1.test.data[,length(pc1.test.data)]) ) #output the prediction matrix
     #Change the outputs to numeric values; 
     pc1.given.hc <- as.numeric(as.character(pc1.hc.pred))
-    pc1.pred.hc <- as.numeric(as.character(pc1.test.data[,"L"]))
+    pc1.pred.hc <- as.numeric(as.character(pc1.test.data[,length(pc1.test.data)]))
     accuracy(f = pc1.given.hc , x = pc1.pred.hc)  #print the accuracy
     
-  
+    pc1.hc.auc <- sapply( pc1.test.data, as.numeric )
+    
    
     if(  identical(whitelist.arcs,NULL) ) 
       temp.path = "\\HC"
     else
       temp.path = "\\HC\\BAN" 
+    
+    
+  
+    
+    #print (  colAUC(  pc1.tan.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.tan) , plotROC=TRUE ) )
     
     
     drawPlot(temp.path,pc1.hc,paste("hc_",j,"_",i,sep="") ) ;

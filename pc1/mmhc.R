@@ -22,18 +22,37 @@ runMMHC = function(debug,i) {
   
   pc1.mmhc.pred<<- predict(pc1.mmhc.fitted$L, pc1.test.data) #2nd parameter should be pc1.test.data
   
-  print( table(pc1.mmhc.pred, pc1.test.data[, "L"])) #output the prediction matrix
+  print( table(pc1.mmhc.pred, pc1.test.data[,length(pc1.test.data)]     )) #output the prediction matrix
   #Change the outputs to numeric values; 
   pc1.given.mmhc <- as.numeric(as.character(pc1.mmhc.pred))
-  pc1.pred.mmhc <- as.numeric(as.character(pc1.test.data[,"L"]))
+  pc1.pred.mmhc <- as.numeric(as.character(  pc1.test.data[,length(pc1.test.data)]     )  )
   print( accuracy(f = pc1.given.mmhc , x = pc1.pred.mmhc) )  #print the accuracy
+  
+  
   
   if(  identical(whitelist.arcs,NULL) ) 
     temp.path = "\\MMHC"
   else
     temp.path = "\\MMHC\\BAN" 
   
+ # 
+  pc1.mmhc.auc <- sapply( pc1.test.data, as.numeric )
+  print (  colAUC(  pc1.mmhc.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.mmhc) , plotROC=TRUE ) )
   
+  pc1.mmhc.auc <- sapply( pc1.test.data, as.numeric )
+  print (  colAUC( pc1.mmhc.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.mmhc) , plotROC=TRUE ) )
+  
+  
+  if( i==1  )
+    auc.mmhc <<- colAUC(  pc1.mmhc.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.mmhc) , plotROC=TRUE )
+  else{
+    
+    auc.mmhc <<- rbind( auc.mmhc,colAUC(  pc1.mmhc.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.mmhc) , plotROC=TRUE ) )
+  }
+  
+  print (  colAUC(  pc1.mmhc.auc[,- length(pc1.test.data)] , as.numeric( pc1.pred.mmhc) , plotROC=TRUE ) )
+  #
+ 
   drawPlot(temp.path,pc1.mmhc,paste("mmhc",i,sep="")) ;
   
   #graphviz.plot(pc1.mmhc)
