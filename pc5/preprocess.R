@@ -1,26 +1,35 @@
-preprocess  = function(debug) {
+preprocess  = function(debug,i) {
+ 
   
   pc5 <<- read.arff("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\pc5.arff") #Load the dataset
   
+  Letters <<- c(letters,LETTERS)
+  colnames(pc5) <<- c ( Letters[1:length(pc5)] )
+  
+  pc5.temp <<- pc5[sample.int(nrow(pc5)),] #Shuffle the rows 
+  
+  
+ # pc5.temp <<- pc5.temp[ , c( length(pc5.temp) , (1 : (length(pc5.temp) -1 )) ) ]
+ # pc5<<- pc5[ , c( length(pc5) , (1 : (length(pc5) -1 ) ) ]
+
+  
+  pc5 <<- pc5.temp
+  
  # pc5 <<- sample(pc5) #Create a random permutation of the data
+ 
+  pc5.temp <<- mdlp(pc5)
+ 
+  pc5 <<- data.frame( pc5.temp$Disc.data )
   
  # print(pc5)
-  Letters <<- c(letters,LETTERS)
-  colnames(pc5) <<- Letters[1:39]
-  
+ 
 
  # print( str(pc5))
   
-  pc5.test <<- pc5[(9*NROW(pc5)/10):NROW(pc5),] # Build a Test set
-  pc5 <<- pc5[1:(9*NROW(pc5)/10-1),]
+  pc5.test <<- pc5[(2*NROW(pc5)/3):NROW(pc5),] # Build a Test set
+  pc5 <<- pc5[1:(2*NROW(pc5)/3-1),]
   
-  # str(pc5) 
-  
-  # Change the Strings Y,N to 1,0
-  
-  if( debug){
-    print("Converting N,Y to 0,1")
-  }
+ 
   
   pc5$M  <<- as.numeric(factor(pc5$M , levels=c("FALSE" ,"TRUE") ) ) 
   pc5.test$M  <<- as.numeric(pc5.test$M , levels=c("FALSE" ,"TRUE") ) 
@@ -30,14 +39,12 @@ preprocess  = function(debug) {
     print("Discretising data")
   }
   
-  #discretize the data for bayesian networks
-  pc5.disc  <<- chiM(pc5, alpha = 0.05) 
-  pc5.test.disc  <<- chiM(pc5.test,alpha=0.05)
+  
   
   
   #load the data into a data frame
-  pc5.disc.data  <<- data.frame(pc5.disc$Disc.data)
-  pc5.test.data  <<- data.frame(pc5.test.disc$Disc.data)
+  pc5.disc.data  <<- data.frame(pc5)
+  pc5.test.data  <<- data.frame(pc5.test)
  
   
   if( debug){
@@ -58,17 +65,17 @@ preprocess  = function(debug) {
   excludevars  <<- NULL
   
   for ( i in 1:length(names(pc5.disc.data) ) ) {
-    print(length( levels( pc5.disc.data[,i]) ) )
-    print(length( levels( pc5.test.data[,i]) ) )
+    #print(length( levels( pc5.disc.data[,i]) ) )
+   # print(length( levels( pc5.test.data[,i]) ) )
     
     if ( length( levels( pc5.disc.data[,i]) ) == 1 ) {
       excludevars  <<- c(excludevars,names(pc5.disc.data)[i])
     } 
     if ( length( levels( pc5.test.data[,i] ) ) == 1) {
       excludevars  <<- c(excludevars,names(pc5.test.data)[i])
-    }
-   # if( length(levels( pc5.disc.data[,i])) != length(levels( pc5.test.data[,i]))) #AS they are not able to cope up with such instances
-    #  excludevars  <<- c(excludevars,names(pc5.test.data)[i])
+    } 
+    
+   
   } #for
   
   

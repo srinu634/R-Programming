@@ -6,106 +6,62 @@ library(ROCR)
 library(pROC)
 library(forecast)
 library(base)
-
+library(gRain)
+library(caTools)
+library(base)
 setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc5")
 
 sink("pc5.log.txt")
 
+source("initialize.R")
+source("start.R")
+source("startBAN.R")
 source("preprocess.R")
+source("drawPlot.R")
+source("getAvgAUC.R")
 source("bn.r")
 source("TAN.R")
 source("hc.R")
-source("mmhc.R")
 source("tabu.R")
+source("mmhc.R")
 source("HITON.R")
 source("RSMAX2.R")
 source("mmpc.R")
 source("gs.R")
-source("IAMB.R")
 source("mmpc.R")
-source("fastIAMB.R")
-source("interIAMB.R")
+source("IAMB.R")
+#source("fastIAMB.R")
+#source("interIAMB.R")
 
+
+initialize() ;
 
 
 debug = FALSE
 
-preprocess(debug)
+ i= 0
+  for( i in 1:10){
+   paste("In iteration",i ,sep= " ")
+    startProcess(debug,i)
+  }
 
-#General Bayesian + TAN
+getAvgAUC() # Get the average AUC measures.
 
-runBN(debug)
-
-runTAN(debug)
-
-#General Bayesian Networks
-
-attributes <<- names(pc5.disc.data) #Global variable
-whitelist.arcs <<- NULL
-
-#########Score Based
-
-
-runHC(debug) 
-#runTABU(debug)
-
-
-#########Hybrid
-
-runMMHC(debug)
-runRSMAX2(debug)
-runHITON(debug)
-
-
-
-#Constraint Based
-
-runGS(debug)
-runIAMB(debug)
-runMMPC(debug)
-runFASTIAMB(debug)
-runINTERIAMB(debug)
-
-
-
-
-
-# Include an arc from class node to every other node
-len <<- length(pc5.disc.data) #Number of attributes
-from <<- NULL
-for( i in 1:(len-1)){
-  from <- c( from,c("M")) 
+i= 0
+for( i in 1:10){
+  paste("In iteration",i ,sep= " ")
+  startProcessBAN(debug,i)
 }
-#from
-to <<- NULL
-attributes <- names(pc5.disc.data)
-for(i in 1:(len-1) ){
-  to <<- c(to, attributes[i]  )
-}
-#to
 
-whitelist.arcs <<- data.frame(from,to)
-setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc5\\plots")
-
-#Build a BAN by including arc from Classification Node to every other node
+getAvgAUC() # Get the average AUC measures.
 
 
-#runHC(debug) 
-#runTABU(debug)
+ 
 
-
-#########Hybrid
-
-runMMHC(debug)
-runRSMAX2(debug)
-runHITON(debug)
+ 
+  
+###############################################################################
+#
 
 
 
-#Constraint Based
-
-runGS(debug)
-runIAMB(debug)
-runMMPC(debug)
-runFASTIAMB(debug)
-runINTERIAMB(debug)

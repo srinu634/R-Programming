@@ -5,14 +5,15 @@ drawPlot = function(path,g,gname ) {
     #g : graph structure
     #gname :  name of the graph
   
-    common.path = "C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1\\plots\\"
+    common.path <<- paste("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming","\\",dataset.name,
+                        "\\plots\\",sep="")
     
     specific.path <<- paste( common.path , path,sep="")
   
     
     
     Letters <<- c(letters,LETTERS)
-    colnames(pc1) <<- Letters[1:length(pc1)]
+    colnames(data.d) <<- Letters[1:length(data.d)]
 
   
   setwd(specific.path)
@@ -20,7 +21,8 @@ drawPlot = function(path,g,gname ) {
   graphviz.plot(g)
   dev.off()
   
-  setwd("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\pc1\\plots")
+  
+  setwd(common.path)
   
   
 }
