@@ -8,8 +8,10 @@ library(forecast)
 library(base)
 library(gRain)
 library(caTools)
+library(pcalg)
 
-dataset.name <<- "pc2" #Set the file name here
+
+dataset.name <<- "pc3" #Set the file name here
 
 
 setwd(paste("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\code",sep=""))
@@ -27,10 +29,10 @@ source("getpriorprobsneg.R")
 initialize() ;
 
 
-debug = TRUE
+debug = FALSE
 getwd();
  i= 0
-  for( i in 1:10){
+  for( i in 1:1){
    paste("In iteration",i ,sep= " ")
     startProcess(debug,i)
   }

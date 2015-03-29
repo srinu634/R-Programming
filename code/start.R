@@ -81,7 +81,7 @@ runClassifiers = function ( debug,i) {
     print("Running TAN")
   }
   ################ Tree Augmented Network classifier###########################
-  tan <- tree.bayes(disc.data, test.data[,length(test.data)] )
+  tan <- tree.bayes(disc.data, names(disc.data)[length(disc.data)] )
   #graphviz.plot(tan)
   fitted <- bn.fit(tan , disc.data)
   #coefficients(fitted)
@@ -148,9 +148,9 @@ runClassifiers = function ( debug,i) {
     
     
     
-    hc.fitted = bn.fit(hc,disc.data)
+    hc.fitted = bn.fit(hc,disc.data,score=score1[j],whitelist=whitelist.arcs)
     
-    hc.pred<- predict(hc.fitted, test.data,node="L") #2nd parameter should be test.data
+    hc.pred<- predict(hc.fitted, test.data,node = names(disc.data)[length(disc.data)] ) #2nd parameter should be test.data
     
     print ( table(hc.pred, test.data[,length(test.data)]) ) #output the prediction matrix
     #Change the outputs to numeric values; 
@@ -194,6 +194,10 @@ runClassifiers = function ( debug,i) {
     #     }
     
     drawPlot(temp.path,hc,paste("hc_",j,"_",i,sep="") ) ;
+    
+    print("Print the prior probs")
+     test = getPriorProbsPos(hc.fitted, test.data) 
+    print(test)
   }
   #HIllclimb : end
   
@@ -227,7 +231,7 @@ runClassifiers = function ( debug,i) {
       print(str(tabu.fitted))
     }
     
-    tabu.pred = predict(tabu.fitted, test.data,node="L") #2nd parameter should be test.data
+    tabu.pred = predict(tabu.fitted, test.data,node= names(disc.data)[length(disc.data)]) #2nd parameter should be test.data
     
     
     print ( table(tabu.pred, test.data[,length(test.data)]) )#output the prediction matrix
@@ -304,7 +308,7 @@ runClassifiers = function ( debug,i) {
   
   mmhc.fitted = bn.fit(mmhc,disc.data)
   
-  mmhc.pred = predict(mmhc.fitted, test.data,node="L") #2nd parameter should be test.data
+  mmhc.pred = predict(mmhc.fitted, test.data,node=as.character(names(disc.data)[length(disc.data)])) #2nd parameter should be test.data
   
   print( table(mmhc.pred, test.data[,length(test.data)]     )) #output the prediction matrix
   #Change the outputs to numeric values; 
@@ -349,7 +353,7 @@ runClassifiers = function ( debug,i) {
   
   rsmax2.fitted = bn.fit(rsmax2,disc.data)
   
-  rsmax2.pred<- predict(rsmax2.fitted, test.data,node="L") #2nd parameter should be test.data
+  rsmax2.pred<- predict(rsmax2.fitted, test.data,node=as.character(names(disc.data)[length(disc.data)])) #2nd parameter should be test.data
   
   print( table(rsmax2.pred, test.data[,length(test.data)]) ) #output the prediction matrix
   #Change the outputs to numeric values; 
@@ -409,7 +413,7 @@ runClassifiers = function ( debug,i) {
   
   gs.fitted = bn.fit(gs,disc.data)
   
-  gs.pred = predict(gs.fitted, test.data,method="parents",node="L") #2nd parameter should be test.data
+  gs.pred = predict(gs.fitted, test.data,method="parents",node=as.character(names(disc.data)[length(disc.data)])) #2nd parameter should be test.data
   
   print( table(gs.pred, test.data[,length(test.data)] )  ) #output the prediction matrix
   #Change the outputs to numeric values; 
@@ -446,7 +450,7 @@ runClassifiers = function ( debug,i) {
   #  #
   #
   
-  pos.gs = getPrioProbsPos(gs.fitted , disc.data)
+  pos.gs = getPriorProbsPos(gs.fitted , disc.data)
   neg.gs = getPriorProbsNeg(gs.fitted, disc.data)
   
   #print(pos.gs)

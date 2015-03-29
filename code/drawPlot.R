@@ -4,7 +4,7 @@ drawPlot = function(path,g,gname ) {
     #path: path to store the graph . Relative plot
     #g : graph structure
     #gname :  name of the graph
-  
+    print(path)
     common.path.plots <- paste("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming","\\",dataset.name,
                         "\\plots\\",sep="")
     

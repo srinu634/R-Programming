@@ -2,10 +2,10 @@ initialize = function( ) {
   
   #Declare Necessary golbal variables
   
- 
-  dir.create(common.path, showWarnings = TRUE, recursive = FALSE, mode = "0777")
   common.path <<- paste("C:\\Users\\redhawk\\Documents\\GitHub\\R-Programming\\",dataset.name,"\\plots",sep="")
   
+  dir.create(common.path, showWarnings = TRUE, recursive = FALSE, mode = "0777")
+ 
   
   paths <<- c("\\BN", "\\TAN","\\HC","\\HC\\BAN","\\TABU","\\TABU\\BAN","\\GS","\\GS\\BAN","\\MMHC","\\MMHC\\BAN","\\RSMAX2","\\RSMAX2\\BAN")
   

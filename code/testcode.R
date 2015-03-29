@@ -1,8 +1,8 @@
 
 
-g.fit = bn.fit(mmhc(disc.data),disc.data)
+g.fit = bn.fit(pc1.mmhc,pc1.disc.data)
 
-g.pred = predict(g.fit,test.data,method="bayes-lw",node="L")
+g.pred = predict(g.fit,pc1.test.data,method="bayes-lw",node="L")
 
 print( table(g.pred, pc1.test.data[,length(pc1.test.data)] )  ) #output the prediction matrix
 
