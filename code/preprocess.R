@@ -1,11 +1,27 @@
+#Preprocess the Data 
+# This includes:
+# a) Discretizing the data using the method of Fayyad & Irani
+# b) Also, for better graphical representation, the variables of the data have been changed to alphabets
+# c) Building the Test set. 2/3rd , 1/3rd split.
+# d) Removing the Single Factored Variables. ( As they don't add any significance to the network )
+
 preprocess  = function(debug,i) {
  
   
   data.d <<- read.arff( paste("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\",dataset.name,
-  "d.arff",sep="")) #Load the data.dset
+  ".arff",sep="")) #Load the data.dset
+  
+  if(debug) { print(data.d)}
   
   Letters <<- c(letters,LETTERS)
   colnames(data.d) <<- c ( Letters[1:length(data.d)] )
+  
+  if( debug) 
+  {print("Discretising the data")}
+  
+  data.d <<- mdlp( data.d)$Disc.data
+  
+  if(debug) { print(data.d)}
   
   data.d <<- data.d[sample.int(nrow(data.d)),] #Shuffle the rows 
   
@@ -37,7 +53,7 @@ preprocess  = function(debug,i) {
   }
   
   #Change all the discretized values into factors
-  disc.data[,names(data)]  <<- lapply(disc.data[,names(data)] , factor) 
+  disc.data[,names(data.d)]  <<- lapply(disc.data[,names(data.d)] , factor) 
   test.data[,names(test)]  <<- lapply(test.data[,names(test)] , factor) 
   
   
@@ -59,8 +75,7 @@ preprocess  = function(debug,i) {
     if ( length( levels( test.data[,i] ) ) == 1) {
       excludevars  <<- c(excludevars,names(test.data)[i])
     } 
-    
-   
+  
   } #for
   
   

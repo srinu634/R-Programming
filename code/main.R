@@ -29,7 +29,7 @@ source("getpriorprobsneg.R")
 initialize() ;
 
 
-debug = FALSE
+debug = TRUE
 getwd();
  i= 0
   for( i in 1:1){
