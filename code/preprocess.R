@@ -5,44 +5,19 @@
 # c) Building the Test set. 2/3rd , 1/3rd split.
 # d) Removing the Single Factored Variables. ( As they don't add any significance to the network )
 
-preprocess  = function(debug,i) {
- 
+preprocess  = function(debug,i) { 
   
-  data.d <<- read.arff( paste("C:\\Users\\redhawk\\Desktop\\Thesis\\datasets\\",dataset.name,
-  ".arff",sep="")) #Load the data.dset
+  if(debug) { print(dataset)}
   
-  if(debug) { print(data.d)}
-  
-  Letters <<- c(letters,LETTERS)
-  colnames(data.d) <<- c ( Letters[1:length(data.d)] )
-  
-  if( debug) 
-  {print("Discretising the data")}
-  
-  data.d <<- mdlp( data.d)$Disc.data
-  
-  if(debug) { print(data.d)}
-  
-  data.d <<- data.d[sample.int(nrow(data.d)),] #Shuffle the rows 
+  print("Shuffling the dataset :Row-wise")
+  dataset <<- dataset[sample.int(nrow(dataset)),] #Shuffle the rows 
   
  # print( str(pc1))
   
-  test <<- data.d[(2*NROW(data.d)/3):NROW(data.d),] # Build a Test set
-  data.d <<- data.d[1:(2*NROW(data.d)/3-1),]
-  
+  test <<- dataset[(2*NROW(dataset)/3):NROW(dataset),] # Build a Test set
+  data.d <<- dataset[1:(2*NROW(dataset)/3-1),]
+
  
-  
- # pc1$L  <<- as.numeric(factor(pc1$L , levels=c("N" ,"Y") ) ) 
-  #test$L  <<- as.numeric(test$L , levels=c("N" ,"Y") ) 
-  
-  
-  if( debug){
-    print("Discretising data.d")
-  }
-  
-  
-  
-  
   #load the data into a dataframe
   disc.data  <<- data.frame(data.d)
   test.data  <<- data.frame(test)
@@ -82,10 +57,10 @@ preprocess  = function(debug,i) {
   
   excludevars  <<- unique(excludevars)
   
-  if( debug){
-    print("Single factored variables are:")
+ 
+    print("Removing Single factored variables: ")
     print(excludevars)
-  } 
+  
   
   excludevars  <<-  names(data.d) %in% excludevars
   disc.data  <<- disc.data[ !excludevars  ]
